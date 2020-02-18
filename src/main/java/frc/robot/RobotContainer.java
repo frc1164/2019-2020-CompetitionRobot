@@ -20,18 +20,13 @@ import frc.robot.Constants.conPanConstants;
 
 //Subsystems
 import frc.robot.subsystems.FuelCellEE;
-import frc.robot.subsystems.Vision;
 import frc.robot.subsystems.Chassis;
-import frc.robot.subsystems.ControlPanel;
 
 //Commands
 import frc.robot.commands.ChangeGear;
 import frc.robot.commands.Drive;
 import frc.robot.commands.FuelCellEESol;
 import frc.robot.commands.FuelCellEEMot;
-import frc.robot.commands.SetColor;
-
-
 
 /**
  * This class is where the bulk of the robot should be declared.  Since Command-based is a
@@ -45,10 +40,8 @@ public class RobotContainer {
   private final Drive m_Drive;
   private final FuelCellEEMot m_FuelCellEEMot;
   private final FuelCellEE m_FuelCellEE;
-  private final Vision m_Vision;
   public static Joystick m_DriverStick;
   public static XboxController m_OperatorController;
-  public static ControlPanel m_ControlPanel;
 
 
   /**
@@ -57,10 +50,8 @@ public class RobotContainer {
   public RobotContainer() {
 
    //Instantiate Subsystems 
-    m_Vision = new Vision();
     m_Chassis = new Chassis();
     m_FuelCellEE = new FuelCellEE();
-    m_ControlPanel = new ControlPanel();
 
 
     //Set Autonomous Commands
@@ -92,9 +83,6 @@ public class RobotContainer {
 
     new JoystickButton(m_DriverStick, joyStickConstants.fuelCellEESol)
                        .whenPressed(new FuelCellEESol(m_FuelCellEE));
-
-    new JoystickButton(m_OperatorController, xBoxConstants.setColor)
-                       .whileHeld(new SetColor(m_ControlPanel));
   }
 
 

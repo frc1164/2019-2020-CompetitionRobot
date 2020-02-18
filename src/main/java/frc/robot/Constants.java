@@ -61,19 +61,5 @@ public final class Constants {
     public static final class xBoxConstants {
         public static final int operatorPort = 1;
         public static final int ry_Axis = 5;
-        public static final int setColor = 1;
-    }
-
-    public static final class conPanConstants {
-        public static final int talon = 12;
-        public static final double conPanSpeed = .1;
-        public static final int conPanEESolenoidExtend = 4;
-        public static final int conPanEESolenoidRetract = 5;
-        public static final I2C.Port i2cPort = I2C.Port.kOnboard;
-        public static final double[] blue = {0.143, 0.427, 0.429};
-        public static final double[] green = {0.197, 0.561, 0.240};
-        public static final double[] red = {0.561, 0.232, 0.114};
-        public static final double[] yellow = {0.361, 0.524, 0.113};
-        public static final String FMScolor = "Green";
     }
 }
