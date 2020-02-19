@@ -6,8 +6,6 @@
 /*----------------------------------------------------------------------------*/
 
 package frc.robot;
-
-import org.w3c.dom.css.RGBColor;
 import edu.wpi.first.wpilibj.I2C;
 
 /**
@@ -41,10 +39,9 @@ public final class Constants {
     }
 
     public static final class fuelCellEEConstants {
-        public static final int talon = 15;
-        //Exted and retract may have to be be reversed
-        public static final int fuelCellEESolenoidExtend = 4;
-        public static final int fuelCellEESolenoidRetract = 5;
+        public static final int talon = 15; // make this into a regular motor
+        public static final int fuelCellEESolenoidExtend = 5;
+        public static final int fuelCellEESolenoidRetract = 4;
     }
 
     public static final class joyStickConstants {
@@ -61,5 +58,13 @@ public final class Constants {
     public static final class xBoxConstants {
         public static final int operatorPort = 1;
         public static final int ry_Axis = 5;
+        public static final int A_BUTTON = 1;
+    }
+
+    public static final class conPanConstants {
+        public static final int talon = 15;
+        public static final double conPanSpeed = .1;
+        public static final int conPanSolExtend = 2; //these may need to be swapped
+        public static final int conPanSolRetract = 3; //these may need to be swapped
     }
 }

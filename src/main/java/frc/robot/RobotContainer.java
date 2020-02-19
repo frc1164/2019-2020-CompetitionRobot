@@ -6,6 +6,7 @@
 /*----------------------------------------------------------------------------*/
 
 package frc.robot;
+
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 
@@ -16,15 +17,16 @@ import edu.wpi.first.wpilibj.XboxController;
 //Constants
 import frc.robot.Constants.joyStickConstants;
 import frc.robot.Constants.xBoxConstants;
-import frc.robot.Constants.conPanConstants;
 
 //Subsystems
 import frc.robot.subsystems.FuelCellEE;
 import frc.robot.subsystems.Chassis;
+import frc.robot.subsystems.ControlPanel;
 
 //Commands
 import frc.robot.commands.ChangeGear;
 import frc.robot.commands.Drive;
+import frc.robot.commands.ConPanSol;
 import frc.robot.commands.FuelCellEESol;
 import frc.robot.commands.FuelCellEEMot;
 
@@ -40,9 +42,9 @@ public class RobotContainer {
   private final Drive m_Drive;
   private final FuelCellEEMot m_FuelCellEEMot;
   private final FuelCellEE m_FuelCellEE;
+  private final ControlPanel m_ControlPanel;
   public static Joystick m_DriverStick;
   public static XboxController m_OperatorController;
-
 
   /**
    * The container for the robot.  Contains subsystems, OI devices, and commands.
@@ -52,7 +54,7 @@ public class RobotContainer {
    //Instantiate Subsystems 
     m_Chassis = new Chassis();
     m_FuelCellEE = new FuelCellEE();
-
+    m_ControlPanel = new ControlPanel();
 
     //Set Autonomous Commands
 
@@ -83,6 +85,9 @@ public class RobotContainer {
 
     new JoystickButton(m_DriverStick, joyStickConstants.fuelCellEESol)
                        .whenPressed(new FuelCellEESol(m_FuelCellEE));
+
+    new JoystickButton(m_OperatorController, xBoxConstants.A_BUTTON)
+                       .whenPressed(new ConPanSol(m_ControlPanel));
   }
 
 

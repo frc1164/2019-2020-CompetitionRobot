@@ -7,15 +7,18 @@
 
 package frc.robot.subsystems;
 
-import edu.wpi.first.wpilibj2.command.SubsystemBase;
-import frc.robot.Constants.fuelCellEEConstants;
-import frc.robot.Constants.driveConstants;
-import edu.wpi.first.wpilibj.Solenoid;
+//PhoenixTuner libraries
 import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.can.TalonSRX;
-import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;;
 
-//import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+//WPILIB libraries
+import edu.wpi.first.wpilibj2.command.SubsystemBase;
+import edu.wpi.first.wpilibj.Solenoid;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+
+//Local imports
+import frc.robot.Constants.fuelCellEEConstants;
+import frc.robot.Constants.driveConstants;
 
 public class FuelCellEE extends SubsystemBase {
   private final TalonSRX talon = new TalonSRX(fuelCellEEConstants.talon);

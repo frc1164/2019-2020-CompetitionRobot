@@ -5,22 +5,18 @@
 /* the project.                                                               */
 /*----------------------------------------------------------------------------*/
 
-// 1) Flip fuelCellEE with button 4, 2) Run fuelCEllEE motor according to position of solenoid.
-
 package frc.robot.commands;
 
 import edu.wpi.first.wpilibj2.command.CommandBase;
-import frc.robot.subsystems.FuelCellEE;
+import frc.robot.subsystems.ControlPanel;
 
-public class FuelCellEESol extends CommandBase {
-  private static boolean fuelCellEEFlipSol = true;
-  private final FuelCellEE m_FuelCellEE;
+public class ConPanMot extends CommandBase {
+  private ControlPanel m_ControlPanel;
   /**
-   * Creates a new FuelCellEEScore.
+   * Creates a new ConPanMot.
    */
-  public FuelCellEESol(FuelCellEE m_FuelCellEE) {
-    this.m_FuelCellEE = m_FuelCellEE;
-    addRequirements(m_FuelCellEE);
+  public ConPanMot(ControlPanel m_ControlPanel) {
+    this.m_ControlPanel = m_ControlPanel;
     // Use addRequirements() here to declare subsystem dependencies.
   }
 
@@ -32,8 +28,6 @@ public class FuelCellEESol extends CommandBase {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    FuelCellEESol.fuelCellEEFlipSol = !FuelCellEESol.fuelCellEEFlipSol;
-    this.m_FuelCellEE.fuelCellEEFlip(FuelCellEESol.fuelCellEEFlipSol);
   }
 
   // Called once the command ends or is interrupted.
@@ -44,6 +38,6 @@ public class FuelCellEESol extends CommandBase {
   // Returns true when the command should end.
   @Override
   public boolean isFinished() {
-    return true;
+    return false;
   }
 }
