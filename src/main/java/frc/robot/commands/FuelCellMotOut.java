@@ -8,18 +8,16 @@
 package frc.robot.commands;
 
 import edu.wpi.first.wpilibj2.command.CommandBase;
-import frc.robot.subsystems.FuelCellEE;
-import frc.robot.RobotContainer;
-import frc.robot.Constants.xBoxConstants;
+import frc.robot.subsystems.FuelCell;
+import frc.robot.Constants.fuelCellConstants;
 
-public class FuelCellEEMot extends CommandBase {
-  private final FuelCellEE m_FuelCellEE;
+public class FuelCellMotOut extends CommandBase {
+  private final FuelCell m_FuelCell;
   /**
-   * Creates a new FuelCellEEMot.
+   * Creates a new FuelCellMot.
    */
-  public FuelCellEEMot(FuelCellEE m_FuelCellEE) {
-    this.m_FuelCellEE = m_FuelCellEE;
-    addRequirements(m_FuelCellEE);
+  public FuelCellMotOut(FuelCell m_FuelCell) {
+    this.m_FuelCell = m_FuelCell;
     // Use addRequirements() here to declare subsystem dependencies.
   }
 
@@ -31,13 +29,14 @@ public class FuelCellEEMot extends CommandBase {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    double runFuelCellEEMot = RobotContainer.m_OperatorController.getRawAxis(xBoxConstants.ry_Axis);
-    m_FuelCellEE.fuelCellEESpeed(runFuelCellEEMot);
+    double setFuelCellMotSpeed = fuelCellConstants.fuelCellMotSpeed;
+    m_FuelCell.fuelCellSpeed(-setFuelCellMotSpeed);
   }
 
   // Called once the command ends or is interrupted.
   @Override
   public void end(boolean interrupted) {
+    m_FuelCell.fuelCellSpeed(0.0);
   }
 
   // Returns true when the command should end.

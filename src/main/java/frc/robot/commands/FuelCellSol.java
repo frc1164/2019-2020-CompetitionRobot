@@ -5,19 +5,20 @@
 /* the project.                                                               */
 /*----------------------------------------------------------------------------*/
 
+// 1) Flip fuelCell with button 4, 2) Run fuelCEllEE motor according to position of solenoid.
+
 package frc.robot.commands;
 
 import edu.wpi.first.wpilibj2.command.CommandBase;
-import frc.robot.subsystems.Chassis;
+import frc.robot.subsystems.FuelCell;
 
-public class ChangeGear extends CommandBase {
-  private static boolean m_changeGear = false;
-  private final Chassis m_Chassis;
+public class FuelCellSol extends CommandBase {
+  private final FuelCell m_FuelCell;
   /**
-   * Creates a new ChangeGear.
+   * Creates a new FuelCellScore.
    */
-  public ChangeGear(Chassis m_Chassis) {
-    this.m_Chassis = m_Chassis;
+  public FuelCellSol(FuelCell m_FuelCell) {
+    this.m_FuelCell = m_FuelCell;
     // Use addRequirements() here to declare subsystem dependencies.
   }
 
@@ -29,8 +30,7 @@ public class ChangeGear extends CommandBase {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    ChangeGear.m_changeGear = !ChangeGear.m_changeGear;
-    this.m_Chassis.changeGear(ChangeGear.m_changeGear);
+    this.m_FuelCell.fuelCellFlip();
   }
 
   // Called once the command ends or is interrupted.
