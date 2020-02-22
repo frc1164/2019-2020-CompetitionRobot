@@ -27,6 +27,7 @@ import frc.robot.Constants.conPanConstants;
 
 public class ControlPanel extends SubsystemBase {
   private final TalonSRX talon;
+  private static boolean conPanFlipSol = false;
 
   /*//Color target declarations
   private final Color kBlueTarget;
@@ -112,9 +113,16 @@ public class ControlPanel extends SubsystemBase {
   }
 
   //Control Panel solenoid
-  public void conPanEEflipSol(boolean isExtended) {
-    conPanSolRetract.set(!isExtended);
-    conPanSolExtend.set(isExtended);
+  public void conPanflipSol() {
+    ControlPanel.conPanFlipSol = !ControlPanel.conPanFlipSol;
+    conPanSolRetract.set(!ControlPanel.conPanFlipSol);
+    conPanSolExtend.set(ControlPanel.conPanFlipSol);
+    SmartDashboard.putBoolean("conPanSol", ControlPanel.conPanFlipSol);
+  }
+
+  public void setRetract() {
+    conPanSolExtend.set(false);
+    conPanSolRetract.set(true);
   }
 
   @Override
