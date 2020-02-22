@@ -38,33 +38,39 @@ public final class Constants {
         public static final int rightEncoderChanB = 3;
     }
 
-    public static final class fuelCellEEConstants {
-        public static final int talon = 15; // make this into a regular motor
-        public static final int fuelCellEESolenoidExtend = 5;
-        public static final int fuelCellEESolenoidRetract = 4;
-    }
-
     public static final class joyStickConstants {
-        public static final int stickPort = 0;
-        public static final int y_Axis = 1;
-        public static final int x_Axis = 0;
-        public static final int rotate = 2;
-        public static final int slider = 3;
-        public static final int trigger = 1;
-        public static final int changeGear = 3;
-        public static final int fuelCellEESol = 4;
+        public static final int STICK_PORT = 0;
+        public static final int Y_AXIS = 1;
+        public static final int X_AXIS = 0;
+        public static final int ROTATE = 2;
+        public static final int SLIDER_AXIS = 3;
+        public static final int TRIGGER = 1;
+        public static final int BUTTON_3 = 3; //changeGear
+        public static final int BUTTON_4 = 4;
     }
 
     public static final class xBoxConstants {
-        public static final int operatorPort = 1;
-        public static final int ry_Axis = 5;
-        public static final int A_BUTTON = 1;
+        public static final int OPERATOR_PORT = 1;
+        public static final int RY_AXIS = 5;
+        public static final int A_BUTTON = 1; //fuelCellSol
+        public static final int B_BUTTON = 2; //conPanMot
+        public static final int X_BUTTON = 3; //fuelCellMot
+        public static final int Y_BUTTON = 4; //conPanSol
+        public static final int L_BUMPER = 5;
+        public static final int R_BUMPER = 6;
+    }
+
+    public static final class fuelCellConstants {
+        public static final int fuelCellMot = 0;
+        public static final double fuelCellMotSpeed = 0.3;         
+        public static final int fuelCellSolenoidExtend = 4;       
+        public static final int fuelCellSolenoidRetract = 5;
     }
 
     public static final class conPanConstants {
         public static final int talon = 15;
-        public static final double conPanSpeed = .1;
-        public static final int conPanSolExtend = 2; //these may need to be swapped
-        public static final int conPanSolRetract = 3; //these may need to be swapped
+        public static final double conPanMotSpeed = 0.1;        
+        public static final int conPanSolRetract = 2;
+        public static final int conPanSolExtend = 3;
     }
 }

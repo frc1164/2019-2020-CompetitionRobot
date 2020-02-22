@@ -11,7 +11,6 @@ import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.subsystems.ControlPanel;
 
 public class ConPanSol extends CommandBase {
-  private static boolean conPanFlipSol = false;
   private ControlPanel m_ControlPanel;
   /**
    * Creates a new ExtendConPan.
@@ -28,8 +27,7 @@ public class ConPanSol extends CommandBase {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    ConPanSol.conPanFlipSol = !ConPanSol.conPanFlipSol;
-    this.m_ControlPanel.conPanEEflipSol(ConPanSol.conPanFlipSol);
+    this.m_ControlPanel.conPanflipSol();
   }
 
   // Called once the command ends or is interrupted.
