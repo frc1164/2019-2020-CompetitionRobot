@@ -6,7 +6,6 @@
 /*----------------------------------------------------------------------------*/
 
 package frc.robot;
-import edu.wpi.first.wpilibj.I2C;
 
 /**
  * The Constants class provides a convenient place for teams to hold robot-wide numerical or boolean
@@ -17,38 +16,6 @@ import edu.wpi.first.wpilibj.I2C;
  * constants are needed, to reduce verbosity.
  */
 public final class Constants {
-    public static final class driveConstants {
-        public static final int leftMotorRear = 13;
-        public static final int rightMotorRear = 2;
-        public static final int leftMotorFront = 12;
-        public static final int rightMotorFront = 3;
-
-        public static final boolean invertLeftMotorRear = true;
-        public static final boolean invertRightMotorRear = false;
-        public static final boolean invertLeftMotorFront = true;
-        public static final boolean invertRightMotorFront = false;
-        
-        public static final int PCM = 5;
-        public static final int LowSol = 1;
-        public static final int HighSol = 0;
-
-        public static final int leftEncoderChanA = 0;
-        public static final int leftEncoderChanB = 1;
-        public static final int rightEncoderChanA = 2;
-        public static final int rightEncoderChanB = 3;
-    }
-
-    public static final class joyStickConstants {
-        public static final int STICK_PORT = 0;
-        public static final int Y_AXIS = 1;
-        public static final int X_AXIS = 0;
-        public static final int ROTATE = 2;
-        public static final int SLIDER_AXIS = 3;
-        public static final int TRIGGER = 1;
-        public static final int BUTTON_3 = 3; //changeGear
-        public static final int BUTTON_4 = 4;
-    }
-
     public static final class xBoxConstants {
         public static final int OPERATOR_PORT = 1;
         public static final int RY_AXIS = 5;
@@ -60,17 +27,11 @@ public final class Constants {
         public static final int R_BUMPER = 6;
     }
 
-    public static final class fuelCellConstants {
-        public static final int fuelCellMot = 0;
-        public static final double fuelCellMotSpeed = 0.3;         
-        public static final int fuelCellSolenoidExtend = 4;       
-        public static final int fuelCellSolenoidRetract = 5;
-    }
-
     public static final class conPanConstants {
+        public static final int PCM = 5;
         public static final int talon = 15;
         public static final double conPanMotSpeed = 0.1;        
-        public static final int conPanSolRetract = 2;
-        public static final int conPanSolExtend = 3;
+        public static final int lowerConPan = 2;
+        public static final int raiseConPan = 3;
     }
 }

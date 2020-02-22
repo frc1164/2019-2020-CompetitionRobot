@@ -11,25 +11,18 @@ import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 
 //Controllers
-import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.XboxController;
+import edu.wpi.first.wpilibj.Joystick;
 
 //Constants
-import frc.robot.Constants.joyStickConstants;
 import frc.robot.Constants.xBoxConstants;
 
 //Subsystems
-import frc.robot.subsystems.FuelCell;
-import frc.robot.subsystems.Chassis;
 import frc.robot.subsystems.ControlPanel;
 
 //Commands
-import frc.robot.commands.ChangeGear;
-import frc.robot.commands.Drive;
-import frc.robot.commands.FuelCellSol;
-import frc.robot.commands.FuelCellMotIn;
-import frc.robot.commands.FuelCellMotOut;
-import frc.robot.commands.ConPanSol;
+import frc.robot.commands.RaiseConPanSol;
+import frc.robot.commands.LowerConPanSol;
 import frc.robot.commands.ConPanMot;
 
 /**
@@ -40,12 +33,8 @@ import frc.robot.commands.ConPanMot;
  */
 public class RobotContainer {
   // The robot's subsystems and commands are defined here...
-  private final Chassis m_Chassis;
-  private final Drive m_Drive;
-  private final FuelCell m_FuelCell;
   private final ControlPanel m_ControlPanel;
-  public static Joystick m_DriverStick;
-  public static XboxController m_OperatorController;
+  public static Joystick m_OperatorController;
 
   /**
    * The container for the robot.  Contains subsystems, OI devices, and commands.
@@ -53,24 +42,11 @@ public class RobotContainer {
   public RobotContainer() {
 
    //Instantiate Subsystems 
-    m_Chassis = new Chassis();
-    m_FuelCell = new FuelCell();
     m_ControlPanel = new ControlPanel();
-
-    //Set Autonomous Commands
-
-    //Set Default Commands
-    m_Drive = new Drive(m_Chassis);
-    m_Chassis.setDefaultCommand(m_Drive);
     
     //Define Controller
-    m_DriverStick = new Joystick(joyStickConstants.STICK_PORT);
-    m_OperatorController = new XboxController(xBoxConstants.OPERATOR_PORT);
-
-    //Initialize solenoids
-    m_Chassis.setLowGear();
-    m_ControlPanel.setRetract();
-    m_FuelCell.setDown();
+    //m_OperatorController = new XboxController(xBoxConstants.OPERATOR_PORT);
+    m_OperatorController = new Joystick(xBoxConstants.OPERATOR_PORT);
 
     // Configure the button bindings
     configureButtonBindings();
@@ -83,23 +59,15 @@ public class RobotContainer {
    * {@link edu.wpi.first.wpilibj2.command.button.JoystickButton}.
    */
   private void configureButtonBindings() {
-    new JoystickButton(m_DriverStick, joyStickConstants.BUTTON_3)
-                       .whenPressed(new ChangeGear(m_Chassis));
-                       
-    new JoystickButton(m_OperatorController, xBoxConstants.A_BUTTON)
-                       .whenPressed(new FuelCellSol(m_FuelCell));
-
-    new JoystickButton(m_OperatorController, xBoxConstants.R_BUMPER)
-                       .whileHeld(new FuelCellMotIn(m_FuelCell));
-
-    new JoystickButton(m_OperatorController, xBoxConstants.L_BUMPER)
-                       .whileHeld(new FuelCellMotOut(m_FuelCell));
 
     new JoystickButton(m_OperatorController, xBoxConstants.Y_BUTTON)
-                       .whenPressed(new ConPanSol(m_ControlPanel));
+                       .whenPressed(new RaiseConPanSol(m_ControlPanel));
 
     new JoystickButton(m_OperatorController, xBoxConstants.B_BUTTON)
-                       .whileHeld(new ConPanMot(m_ControlPanel));
+                       .whenPressed(new LowerConPanSol(m_ControlPanel));
+
+   new JoystickButton(m_OperatorController, xBoxConstants.X_BUTTON)
+                       .whileHeld(new ConPanMot(m_ControlPanel));                   
   }
 
   /**

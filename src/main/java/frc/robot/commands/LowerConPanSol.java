@@ -8,16 +8,15 @@
 package frc.robot.commands;
 
 import edu.wpi.first.wpilibj2.command.CommandBase;
-import frc.robot.subsystems.Chassis;
+import frc.robot.subsystems.ControlPanel;
 
-public class ChangeGear extends CommandBase {
-  private static boolean m_changeGear = false;
-  private final Chassis m_Chassis;
+public class LowerConPanSol extends CommandBase {
+  ControlPanel m_ControlPanel = new ControlPanel();
   /**
-   * Creates a new ChangeGear.
+   * Creates a new LowerConPanSol.
    */
-  public ChangeGear(Chassis m_Chassis) {
-    this.m_Chassis = m_Chassis;
+  public LowerConPanSol(ControlPanel m_ControlPanel) {
+    this.m_ControlPanel = m_ControlPanel;
     // Use addRequirements() here to declare subsystem dependencies.
   }
 
@@ -29,8 +28,7 @@ public class ChangeGear extends CommandBase {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    ChangeGear.m_changeGear = !ChangeGear.m_changeGear;
-    this.m_Chassis.changeGear(ChangeGear.m_changeGear);
+    m_ControlPanel.lowerConPanSol();
   }
 
   // Called once the command ends or is interrupted.
@@ -41,6 +39,6 @@ public class ChangeGear extends CommandBase {
   // Returns true when the command should end.
   @Override
   public boolean isFinished() {
-    return true;
+    return false;
   }
 }

@@ -8,18 +8,15 @@
 package frc.robot.commands;
 
 import edu.wpi.first.wpilibj2.command.CommandBase;
-import frc.robot.subsystems.Chassis;
-import frc.robot.Constants.joyStickConstants;
-import frc.robot.RobotContainer;
+import frc.robot.subsystems.ControlPanel;
 
-public class Drive extends CommandBase {
-  private final Chassis m_Chassis;
+public class RaiseConPanSol extends CommandBase {
+  ControlPanel m_ControlPanel = new ControlPanel();
   /**
-   * Creates a new Drive.
+   * Creates a new RaiseConPanSol.
    */
-  public Drive(Chassis m_Chassis) {
-    this.m_Chassis = m_Chassis;
-    addRequirements(m_Chassis);
+  public RaiseConPanSol(ControlPanel m_ControlPanel) {
+    this.m_ControlPanel = m_ControlPanel;
     // Use addRequirements() here to declare subsystem dependencies.
   }
 
@@ -31,18 +28,7 @@ public class Drive extends CommandBase {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    double forward = RobotContainer.m_DriverStick.getRawAxis(joyStickConstants.Y_AXIS);
-    double turn = RobotContainer.m_DriverStick.getRawAxis(joyStickConstants.X_AXIS);
-    double scalar = RobotContainer.m_DriverStick.getRawAxis(joyStickConstants.SLIDER_AXIS);
-
-    turn = (Math.abs(turn) <= 0.25) ? 0 : turn; 
-    forward = (Math.abs(forward) <= 0.1) ? 0 : forward; 
-    
-    double leftMSpeed = ((-scalar*forward) - turn);
-    double rightMSpeed = ((-scalar*forward) + turn);
-
-    m_Chassis.leftSpeed(leftMSpeed);
-    m_Chassis.rightSpeed(rightMSpeed);
+    m_ControlPanel.raiseConPanSol();
   }
 
   // Called once the command ends or is interrupted.
