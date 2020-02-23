@@ -95,10 +95,10 @@ public class RobotContainer {
 
     //ControlPanel buttons
     new JoystickButton(m_OperatorController, xBoxConstants.Y_BUTTON)
-                       .whenPressed(new raiseConPan(m_ControlPanel));
+                       .whenPressed(new RaiseConPan(m_ControlPanel));
 
     new JoystickButton(m_OperatorController, xBoxConstants.B_BUTTON)
-                       .whenPressed(new lowerConPan(m_ControlPanel));
+                       .whenPressed(new LowerConPan(m_ControlPanel));
 
     new JoystickButton(m_OperatorController, xBoxConstants.B_BUTTON)
                        .whenPressed(new LowerConPan(m_ControlPanel));
