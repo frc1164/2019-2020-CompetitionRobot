@@ -8,11 +8,12 @@
 package frc.robot.commands;
 
 import edu.wpi.first.wpilibj2.command.CommandBase;
-import frc.robot.Constants.conPanConstants;
 import frc.robot.subsystems.ControlPanel;
+import frc.robot.Constants.conPanConstants;
 
 public class ConPanMot extends CommandBase {
   private final ControlPanel m_ControlPanel;
+  private boolean buttonReleased;
   /**
    * Creates a new ConPanMot.
    */
@@ -29,6 +30,7 @@ public class ConPanMot extends CommandBase {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
+    buttonReleased = false;
     double setConPanMotSpeed = conPanConstants.conPanMotSpeed;
     m_ControlPanel.conPanSpeed(setConPanMotSpeed);
   }
@@ -37,11 +39,12 @@ public class ConPanMot extends CommandBase {
   @Override
   public void end(boolean interrupted) {
     m_ControlPanel.conPanSpeed(0.0);
+    buttonReleased = true;
   }
 
   // Returns true when the command should end.
   @Override
   public boolean isFinished() {
-    return true;
+    return buttonReleased;
   }
 }

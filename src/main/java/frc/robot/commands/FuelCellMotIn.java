@@ -13,6 +13,7 @@ import frc.robot.Constants.fuelCellConstants;
 
 public class FuelCellMotIn extends CommandBase {
   private final FuelCell m_FuelCell;
+  private boolean buttonReleased;
   /**
    * Creates a new FuelCellMot.
    */
@@ -29,6 +30,7 @@ public class FuelCellMotIn extends CommandBase {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
+    buttonReleased = false;
     double setFuelCellMotSpeed = fuelCellConstants.fuelCellMotSpeed;
     m_FuelCell.fuelCellSpeed(setFuelCellMotSpeed);
   }
@@ -37,11 +39,12 @@ public class FuelCellMotIn extends CommandBase {
   @Override
   public void end(boolean interrupted) {
     m_FuelCell.fuelCellSpeed(0.0);
+    buttonReleased = true;
   }
 
   // Returns true when the command should end.
   @Override
   public boolean isFinished() {
-    return false;
+    return buttonReleased;
   }
 }

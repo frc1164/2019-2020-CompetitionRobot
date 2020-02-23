@@ -85,7 +85,7 @@ public class RobotContainer {
                        .whenPressed(new ChangeGear(m_Chassis));
 
     //FuelCell buttons                       
-    new JoystickButton(m_OperatorController, xBoxConstants.X_BUTTON)
+    new JoystickButton(m_OperatorController, xBoxConstants.A_BUTTON)
                        .whenPressed(new FuelCellSol(m_FuelCell));
 
     new JoystickButton(m_OperatorController, xBoxConstants.R_BUMPER)
@@ -101,7 +101,7 @@ public class RobotContainer {
     new JoystickButton(m_OperatorController, xBoxConstants.B_BUTTON)
                        .whenPressed(new LowerConPan(m_ControlPanel));
 
-    new JoystickButton(m_OperatorController, xBoxConstants.A_BUTTON)
+    new JoystickButton(m_OperatorController, xBoxConstants.X_BUTTON)
                        .whileHeld(new ConPanMot(m_ControlPanel));
   }
 
