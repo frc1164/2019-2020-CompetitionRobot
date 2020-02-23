@@ -40,7 +40,7 @@ import frc.robot.commands.ConPanMot;
  * (including subsystems, commands, and button mappings) should be declared here.
  */
 public class RobotContainer {
-  // The robot's subsystems and commands are defined here...
+  // The robot's subsystems and default commands are defined here...
   private final Chassis m_Chassis;
   private final Drive m_Drive;
   private final FuelCell m_FuelCell;
@@ -95,7 +95,10 @@ public class RobotContainer {
 
     //ControlPanel buttons
     new JoystickButton(m_OperatorController, xBoxConstants.Y_BUTTON)
-                       .whenPressed(new RaiseConPan(m_ControlPanel));
+                       .whenPressed(new raiseConPan(m_ControlPanel));
+
+    new JoystickButton(m_OperatorController, xBoxConstants.B_BUTTON)
+                       .whenPressed(new lowerConPan(m_ControlPanel));
 
     new JoystickButton(m_OperatorController, xBoxConstants.B_BUTTON)
                        .whenPressed(new LowerConPan(m_ControlPanel));
