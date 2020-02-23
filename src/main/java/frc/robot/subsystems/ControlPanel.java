@@ -52,8 +52,8 @@ public class ControlPanel extends SubsystemBase {
    */
   public ControlPanel() {
       talon = new TalonSRX(conPanConstants.talon);
-      raiseConPan = new Solenoid(driveConstants.PCM, conPanConstants.raiseConPan);
       lowerConPan = new Solenoid(driveConstants.PCM, conPanConstants.lowerConPan);
+      raiseConPan = new Solenoid(driveConstants.PCM, conPanConstants.raiseConPan);
 
   /*//SetColor objects
     m_colorSensor = new ColorSensorV3(conPanConstants.i2cPort);
@@ -112,7 +112,7 @@ public class ControlPanel extends SubsystemBase {
     SmartDashboard.putNumber("conPanTalon", conPanSpeed);
   }
 
-  //Control Panel solenoid CURRENTLY NOT USED
+  //Toggle ConPanSol CURRENTLY NOT USED
   public void conPanflipSol() {
     ControlPanel.conPanFlipSol = !ControlPanel.conPanFlipSol;
     lowerConPan.set(!ControlPanel.conPanFlipSol);

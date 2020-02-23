@@ -11,7 +11,7 @@ import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.subsystems.ControlPanel;
 
 public class ConPanSol extends CommandBase {
-  private ControlPanel m_ControlPanel;
+  private final ControlPanel m_ControlPanel;
   /**
    * Creates a new ExtendConPan.
    */

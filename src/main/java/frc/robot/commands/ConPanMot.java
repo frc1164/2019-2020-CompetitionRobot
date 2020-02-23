@@ -12,7 +12,7 @@ import frc.robot.Constants.conPanConstants;
 import frc.robot.subsystems.ControlPanel;
 
 public class ConPanMot extends CommandBase {
-  private ControlPanel m_ControlPanel;
+  private final ControlPanel m_ControlPanel;
   /**
    * Creates a new ConPanMot.
    */
