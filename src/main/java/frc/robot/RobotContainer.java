@@ -12,7 +12,6 @@ import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 
 //Controllers
 import edu.wpi.first.wpilibj.XboxController;
-import edu.wpi.first.wpilibj.Joystick;
 
 //Constants
 import frc.robot.Constants.xBoxConstants;
@@ -34,7 +33,7 @@ import frc.robot.commands.ConPanMot;
 public class RobotContainer {
   // The robot's subsystems and commands are defined here...
   private final ControlPanel m_ControlPanel;
-  public static Joystick m_OperatorController;
+  public static XboxController m_OperatorController;
 
   /**
    * The container for the robot.  Contains subsystems, OI devices, and commands.
@@ -45,8 +44,7 @@ public class RobotContainer {
     m_ControlPanel = new ControlPanel();
     
     //Define Controller
-    //m_OperatorController = new XboxController(xBoxConstants.OPERATOR_PORT);
-    m_OperatorController = new Joystick(xBoxConstants.OPERATOR_PORT);
+    m_OperatorController = new XboxController(xBoxConstants.OPERATOR_PORT);
 
     // Configure the button bindings
     configureButtonBindings();
