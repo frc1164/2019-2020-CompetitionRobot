@@ -96,7 +96,10 @@ public class RobotContainer {
                        .whileHeld(new FuelCellMotOut(m_FuelCell));
 
     new JoystickButton(m_OperatorController, xBoxConstants.Y_BUTTON)
-                       .whenPressed(new ConPanSol(m_ControlPanel));
+                       .whenPressed(new raiseConPan(m_ControlPanel));
+
+    new JoystickButton(m_OperatorController, xBoxConstants.B_BUTTON)
+                       .whenPressed(new lowerConPan(m_ControlPanel));
 
     new JoystickButton(m_OperatorController, xBoxConstants.B_BUTTON)
                        .whileHeld(new ConPanMot(m_ControlPanel));
