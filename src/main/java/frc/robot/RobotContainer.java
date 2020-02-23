@@ -29,7 +29,8 @@ import frc.robot.commands.Drive;
 import frc.robot.commands.FuelCellSol;
 import frc.robot.commands.FuelCellMotIn;
 import frc.robot.commands.FuelCellMotOut;
-import frc.robot.commands.ConPanSol;
+import frc.robot.commands.RaiseConPan;
+import frc.robot.commands.LowerConPan;
 import frc.robot.commands.ConPanMot;
 
 /**
@@ -67,11 +68,6 @@ public class RobotContainer {
     m_DriverStick = new Joystick(joyStickConstants.STICK_PORT);
     m_OperatorController = new XboxController(xBoxConstants.OPERATOR_PORT);
 
-    //Initialize solenoids
-    m_Chassis.setLowGear();
-    m_ControlPanel.setRetract();
-    m_FuelCell.setDown();
-
     // Configure the button bindings
     configureButtonBindings();
   }
@@ -83,10 +79,12 @@ public class RobotContainer {
    * {@link edu.wpi.first.wpilibj2.command.button.JoystickButton}.
    */
   private void configureButtonBindings() {
+    //Drive buttons
     new JoystickButton(m_DriverStick, joyStickConstants.BUTTON_3)
                        .whenPressed(new ChangeGear(m_Chassis));
-                       
-    new JoystickButton(m_OperatorController, xBoxConstants.A_BUTTON)
+
+    //FuelCell buttons                       
+    new JoystickButton(m_OperatorController, xBoxConstants.X_BUTTON)
                        .whenPressed(new FuelCellSol(m_FuelCell));
 
     new JoystickButton(m_OperatorController, xBoxConstants.R_BUMPER)
@@ -95,10 +93,14 @@ public class RobotContainer {
     new JoystickButton(m_OperatorController, xBoxConstants.L_BUMPER)
                        .whileHeld(new FuelCellMotOut(m_FuelCell));
 
+    //ControlPanel buttons
     new JoystickButton(m_OperatorController, xBoxConstants.Y_BUTTON)
-                       .whenPressed(new ConPanSol(m_ControlPanel));
+                       .whenPressed(new RaiseConPan(m_ControlPanel));
 
     new JoystickButton(m_OperatorController, xBoxConstants.B_BUTTON)
+                       .whenPressed(new LowerConPan(m_ControlPanel));
+
+    new JoystickButton(m_OperatorController, xBoxConstants.A_BUTTON)
                        .whileHeld(new ConPanMot(m_ControlPanel));
   }
 

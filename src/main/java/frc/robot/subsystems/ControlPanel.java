@@ -24,9 +24,12 @@ import edu.wpi.first.wpilibj.Solenoid;
 
 //Local imports
 import frc.robot.Constants.conPanConstants;
+import frc.robot.Constants.driveConstants;
 
 public class ControlPanel extends SubsystemBase {
   private final TalonSRX talon;
+  public final Solenoid raiseConPan;
+  public final Solenoid lowerConPan;
   private static boolean conPanFlipSol = false;
 
   /*//Color target declarations
@@ -44,16 +47,13 @@ public class ControlPanel extends SubsystemBase {
   public static Color detectedColor;
   public static String colorString = "Unknown";
 
-  private final Solenoid conPanSolExtend;
-  private final Solenoid conPanSolRetract;
-
   /**
    * Creates a new ControlPanel.
    */
   public ControlPanel() {
-    talon = new TalonSRX(conPanConstants.talon);
-    conPanSolExtend = new Solenoid(conPanConstants.conPanSolExtend);
-    conPanSolRetract = new Solenoid(conPanConstants.conPanSolRetract);
+      talon = new TalonSRX(conPanConstants.talon);
+      raiseConPan = new Solenoid(driveConstants.PCM, conPanConstants.raiseConPan);
+      lowerConPan = new Solenoid(driveConstants.PCM, conPanConstants.lowerConPan);
 
   /*//SetColor objects
     m_colorSensor = new ColorSensorV3(conPanConstants.i2cPort);
@@ -112,17 +112,24 @@ public class ControlPanel extends SubsystemBase {
     SmartDashboard.putNumber("conPanTalon", conPanSpeed);
   }
 
-  //Control Panel solenoid
+  //Control Panel solenoid CURRENTLY NOT USED
   public void conPanflipSol() {
     ControlPanel.conPanFlipSol = !ControlPanel.conPanFlipSol;
-    conPanSolRetract.set(!ControlPanel.conPanFlipSol);
-    conPanSolExtend.set(ControlPanel.conPanFlipSol);
+    lowerConPan.set(!ControlPanel.conPanFlipSol);
+    raiseConPan.set(ControlPanel.conPanFlipSol);
     SmartDashboard.putBoolean("conPanSol", ControlPanel.conPanFlipSol);
   }
 
-  public void setRetract() {
-    conPanSolExtend.set(false);
-    conPanSolRetract.set(true);
+  //Control Panel solenoid
+  public void lowerConPanSol() {
+    raiseConPan.set(false);
+    lowerConPan.set(true);
+  }
+
+  //Control Panel solenoid
+  public void raiseConPanSol() {
+    lowerConPan.set(false);
+    raiseConPan.set(true);
   }
 
   @Override

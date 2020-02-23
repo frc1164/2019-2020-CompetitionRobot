@@ -41,12 +41,7 @@ public class FuelCell extends SubsystemBase {
     fuelCellSolenoidExtend.set(FuelCell.fuelCellFlipSol);
     SmartDashboard.putBoolean("fuelCellSol", FuelCell.fuelCellFlipSol);
   }
-
-  public void setDown() {
-    fuelCellSolenoidExtend.set(false);
-    fuelCellSolenoidRetract.set(true);
-  }
-
+  
   public void fuelCellSpeed(double fuelCellSpeed) {
     fuelCellMot.set(ControlMode.PercentOutput, fuelCellSpeed);
   }

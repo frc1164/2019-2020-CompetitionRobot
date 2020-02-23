@@ -53,10 +53,6 @@ public class Chassis extends SubsystemBase {
     HighSol.set(isHigh);
   }
 
-  public void setLowGear() {
-    changeGear(false);
-  }
-
   @Override
   public void periodic() {
     // This method will be called once per scheduler run
