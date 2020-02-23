@@ -39,7 +39,7 @@ import frc.robot.commands.ConPanMot;
  * (including subsystems, commands, and button mappings) should be declared here.
  */
 public class RobotContainer {
-  // The robot's subsystems and commands are defined here...
+  // The robot's subsystems and default commands are defined here...
   private final Chassis m_Chassis;
   private final Drive m_Drive;
   private final FuelCell m_FuelCell;

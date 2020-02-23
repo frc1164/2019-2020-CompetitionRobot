@@ -69,7 +69,7 @@ public final class Constants {
 
     public static final class conPanConstants {
         public static final int talon = 15;
-        public static final double conPanMotSpeed = 0.1;        
+        public static final double conPanMotSpeed = 0.25;        
         public static final int conPanSolRetract = 2;
         public static final int conPanSolExtend = 3;
     }
