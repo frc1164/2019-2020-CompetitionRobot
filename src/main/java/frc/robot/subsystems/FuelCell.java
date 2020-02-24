@@ -24,7 +24,7 @@ public class FuelCell extends SubsystemBase {
   private final VictorSPX fuelCellMot;
   private final Solenoid fuelCellSolenoidExtend;
   private final Solenoid fuelCellSolenoidRetract; //Change to "sol"
-  private static boolean fuelCellFlipSol = true;
+  private static boolean fuelCellFlipSol = false;
 
   /**
    * Creates a new FuelCell.

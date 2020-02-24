@@ -24,6 +24,7 @@ public class Chassis extends SubsystemBase {
   private final VictorSPX leftMotorFront = new VictorSPX(driveConstants.leftMotorFront);
   private final VictorSPX rightMotorFront = new VictorSPX(driveConstants.rightMotorFront);
   private final Solenoid LowSol, HighSol;
+  private static boolean m_changeGear = false;
 
   /**
    * Creates a new Chassis.
@@ -48,9 +49,10 @@ public class Chassis extends SubsystemBase {
     rightMotorRear.set(ControlMode.PercentOutput, speed);
   }
 
-  public void changeGear(boolean isHigh) {
-    LowSol.set(!isHigh);
-    HighSol.set(isHigh);
+  public void changeGear() {
+    Chassis.m_changeGear = !Chassis.m_changeGear;
+    LowSol.set(!Chassis.m_changeGear);
+    HighSol.set(Chassis.m_changeGear);
   }
 
   @Override

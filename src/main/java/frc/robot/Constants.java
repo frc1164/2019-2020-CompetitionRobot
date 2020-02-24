@@ -72,5 +72,13 @@ public final class Constants {
         public static final double conPanMotSpeed = 0.25;        
         public static final int lowerConPan = 2;
         public static final int raiseConPan = 3;
+
+        //Color Sensor constants
+        public static final I2C.Port i2cPort = I2C.Port.kOnboard;
+        public static final double[] blue = {0.143, 0.427, 0.429};
+        public static final double[] green = {0.197, 0.561, 0.240};
+        public static final double[] red = {0.561, 0.232, 0.114};
+        public static final double[] yellow = {0.361, 0.524, 0.113};
+        public static final String FMScolor = "Green";
     }
 }

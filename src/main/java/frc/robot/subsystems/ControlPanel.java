@@ -32,16 +32,16 @@ public class ControlPanel extends SubsystemBase {
   public final Solenoid lowerConPan;
   private static boolean conPanFlipSol = false;
 
-  /*//Color target declarations
+  //Color target declarations
   private final Color kBlueTarget;
   private final Color kGreenTarget;
   private final Color kRedTarget;
-  private final Color kYellowTarget;*/
+  private final Color kYellowTarget;
 
-  /*//REV object declarations
+  //REV object declarations
   public final ColorSensorV3 m_colorSensor;
   public final ColorMatch m_colorMatcher;
-  public static ColorMatchResult match;*/
+  public static ColorMatchResult match;
 
   //Local variables
   public static Color detectedColor;
@@ -55,7 +55,7 @@ public class ControlPanel extends SubsystemBase {
       lowerConPan = new Solenoid(driveConstants.PCM, conPanConstants.lowerConPan);
       raiseConPan = new Solenoid(driveConstants.PCM, conPanConstants.raiseConPan);
 
-  /*//SetColor objects
+    //SetColor objects
     m_colorSensor = new ColorSensorV3(conPanConstants.i2cPort);
     m_colorMatcher = new ColorMatch();
     
@@ -69,10 +69,10 @@ public class ControlPanel extends SubsystemBase {
     m_colorMatcher.addColorMatch(kBlueTarget);
     m_colorMatcher.addColorMatch(kGreenTarget);
     m_colorMatcher.addColorMatch(kRedTarget);
-    m_colorMatcher.addColorMatch(kYellowTarget);*/
+    m_colorMatcher.addColorMatch(kYellowTarget);
   } 
     
-  /*//Gets color (helpful for LED programming, etc.)
+  //Gets color (helpful for LED programming, etc.)
   public void getColor() {
     detectedColor = m_colorSensor.getColor();
   }
@@ -104,7 +104,7 @@ public class ControlPanel extends SubsystemBase {
     SmartDashboard.putNumber("Green", detectedColor.green);
     SmartDashboard.putNumber("Blue", detectedColor.blue);
     SmartDashboard.putString("Detected Color", colorString);
-    }*/
+    }
 
   //Control Panel motor
   public void conPanSpeed(double conPanSpeed) {
