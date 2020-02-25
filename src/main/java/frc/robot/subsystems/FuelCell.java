@@ -22,8 +22,8 @@ import frc.robot.Constants.driveConstants;
 
 public class FuelCell extends SubsystemBase {
   private final VictorSPX fuelCellMot;
-  private final Solenoid fuelCellSolenoidExtend;
-  private final Solenoid fuelCellSolenoidRetract; //Change to "sol"
+  private final Solenoid raiseHopper;
+  private final Solenoid lowerHopper; //Change to "sol"
   private static boolean fuelCellFlipSol = false;
 
   /**
@@ -31,14 +31,20 @@ public class FuelCell extends SubsystemBase {
    */
   public FuelCell() {
     fuelCellMot = new VictorSPX(fuelCellConstants.fuelCellMot);
-    fuelCellSolenoidExtend = new Solenoid(driveConstants.PCM, fuelCellConstants.fuelCellSolenoidExtend);
-    fuelCellSolenoidRetract = new Solenoid(driveConstants.PCM, fuelCellConstants.fuelCellSolenoidRetract);
+    raiseHopper = new Solenoid(driveConstants.PCM, fuelCellConstants.raiseHopper);
+    lowerHopper = new Solenoid(driveConstants.PCM, fuelCellConstants.lowerHopper);
+  }
+
+  //Used to set hopper down when initialized
+  public void fuelCellInit() {
+    raiseHopper.set(false);
+    lowerHopper.set(true);
   }
 
   public void fuelCellFlip() {
     FuelCell.fuelCellFlipSol = !FuelCell.fuelCellFlipSol;
-    fuelCellSolenoidRetract.set(!FuelCell.fuelCellFlipSol);
-    fuelCellSolenoidExtend.set(FuelCell.fuelCellFlipSol);
+    lowerHopper.set(!FuelCell.fuelCellFlipSol);
+    raiseHopper.set(FuelCell.fuelCellFlipSol);
     SmartDashboard.putBoolean("fuelCellSol", FuelCell.fuelCellFlipSol);
   }
   

@@ -71,6 +71,12 @@ public class ControlPanel extends SubsystemBase {
     m_colorMatcher.addColorMatch(kRedTarget);
     m_colorMatcher.addColorMatch(kYellowTarget);
   } 
+
+  //Used to set conPan down when initialized
+  public void conPanInit() {
+    raiseConPan.set(false);
+    lowerConPan.set(true);
+  }
     
   //Gets color (helpful for LED programming, etc.)
   public void getColor() {
