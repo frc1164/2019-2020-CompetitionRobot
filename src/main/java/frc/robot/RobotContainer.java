@@ -72,6 +72,11 @@ public class RobotContainer {
 
     // Configure the button bindings
     configureButtonBindings();
+
+    //Init commands
+    m_Chassis.chassisInit();
+    m_ControlPanel.conPanInit();
+    m_FuelCell.fuelCellInit();
   }
 
   /**

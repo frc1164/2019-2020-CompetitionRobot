@@ -70,8 +70,8 @@ public final class Constants {
     public static final class conPanConstants {
         public static final int talon = 15;
         public static final double conPanMotSpeed = 0.25;        
-        public static final int lowerConPan = 2;
-        public static final int raiseConPan = 3;
+        public static final int lowerConPan = 3;
+        public static final int raiseConPan = 2;
 
         //Color Sensor constants
         public static final I2C.Port i2cPort = I2C.Port.kOnboard;
