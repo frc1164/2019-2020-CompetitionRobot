@@ -12,58 +12,48 @@ import frc.robot.subsystems.ControlPanel;
 import frc.robot.Constants.conPanConstants;
 
 public class SetColor extends CommandBase {
-    private final ControlPanel m_ControlPanel;
-    public ColorMatch m_colorMatcher;
-    public String lastColor;
-    public String currentColor;
-    public int numChanges;
-    public final int changesPerRotation = 8;
-    public final int numRotations = 4;
+  public ControlPanel m_controlPanel;
+  public ColorMatch m_colorMatcher;
+  public boolean isMatched;
 
-  public SetColor(ControlPanel m_ControlPanel) {
+  public SetColor(ControlPanel m_controlPanel) {
     // Use addRequirements() here to declare subsystem dependencies.
-    this.m_ControlPanel = m_ControlPanel;
+    this.m_controlPanel = m_controlPanel;
   }
 
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {
-    numChanges = 0;
+    isMatched = false;
   }
 
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    m_ControlPanel.getColor();
-    m_ControlPanel.matchColor();
-    
-    numChanges = 0;
-    lastColor = ControlPanel.colorString;
+    //Add code that sets the LEDs
+    m_controlPanel.getColor();
+    m_controlPanel.matchColor();
+    m_controlPanel.printColor();
 
-    double setConPanMotSpeed = conPanConstants.conPanMotSpeed;
-    m_ControlPanel.conPanSpeed(setConPanMotSpeed);
-
-    while (numChanges < (changesPerRotation * numRotations)) {
-        m_ControlPanel.getColor();
-        m_ControlPanel.matchColor();
-        currentColor = ControlPanel.colorString;
-        
-        if (currentColor.equals(lastColor) == false) {
-          ++numChanges;
-          lastColor = currentColor;
-        }
+    //if the SmartDashboard output 'colorString' is not equal to the String 'FMScolor,' run the motor
+    if (ControlPanel.colorString.compareTo(conPanConstants.FMScolor) != 0) {
+      m_controlPanel.conPanSpeed(conPanConstants.conPanMotSpeed);
     }
-    m_ControlPanel.conPanSpeed(0.0);
+    //else, end the command and turn off the motor
+    else {
+      isMatched = true;
+    }
   }
 
   // Called once the command ends or is interrupted.
   @Override
   public void end(boolean interrupted) {
+    m_controlPanel.conPanSpeed(0);
   }
 
   // Returns true when the command should end.
   @Override
   public boolean isFinished() {
-    return true;
-  }
+      return isMatched;
+    }
 }
