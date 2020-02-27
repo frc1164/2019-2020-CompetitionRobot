@@ -15,6 +15,7 @@ import com.revrobotics.ColorMatch;
 //PhoenixTuner libraries
 import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.can.TalonSRX;
+import com.ctre.phoenix.motorcontrol.NeutralMode;
 
 //WPILIB libraries
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
@@ -52,6 +53,7 @@ public class ControlPanel extends SubsystemBase {
    */
   public ControlPanel() {
       talon = new TalonSRX(conPanConstants.talon);
+      talon.setNeutralMode(NeutralMode.Brake);
       lowerConPan = new Solenoid(driveConstants.PCM, conPanConstants.lowerConPan);
       raiseConPan = new Solenoid(driveConstants.PCM, conPanConstants.raiseConPan);
 
