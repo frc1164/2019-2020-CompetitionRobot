@@ -34,7 +34,6 @@ import frc.robot.commands.FuelCellMotOut;
 
 //ControlPanel commands
 import frc.robot.commands.ConPanSol;
-import frc.robot.commands.ConPanMot;
 import frc.robot.commands.SetColor;
 import frc.robot.commands.RotateConPan;
 
@@ -94,27 +93,24 @@ public class RobotContainer {
                        .whenPressed(new ChangeGear(m_Chassis));
 
     //FuelCell buttons                       
-    new JoystickButton(m_OperatorController, xBoxConstants.X_BUTTON)
+    new JoystickButton(m_OperatorController, xBoxConstants.A_BUTTON)
                        .whenPressed(new FuelCellSol(m_FuelCell));
+                       
+    new JoystickButton(m_OperatorController, xBoxConstants.L_BUMPER)
+                      .whileHeld(new FuelCellMotIn(m_FuelCell));
 
     new JoystickButton(m_OperatorController, xBoxConstants.R_BUMPER)
-                       .whileHeld(new FuelCellMotIn(m_FuelCell));
-
-    new JoystickButton(m_OperatorController, xBoxConstants.L_BUMPER)
                        .whileHeld(new FuelCellMotOut(m_FuelCell));
 
     //ControlPanel buttons
     new JoystickButton(m_OperatorController, xBoxConstants.B_BUTTON)
                        .whenPressed(new ConPanSol(m_ControlPanel));
-
-    /*new JoystickButton(m_OperatorController, xBoxConstants.X_BUTTON)
-                       .whileHeld(new ConPanMot(m_ControlPanel));*/
+    
+    new JoystickButton(m_OperatorController, xBoxConstants.X_BUTTON)
+                       .whenPressed(new RotateConPan(m_ControlPanel));
                        
     new JoystickButton(m_OperatorController, xBoxConstants.Y_BUTTON)
                         .whenPressed(new SetColor(m_ControlPanel));
-
-    new JoystickButton(m_OperatorController, xBoxConstants.X_BUTTON)
-                        .whenPressed(new RotateConPan(m_ControlPanel));
   }
 
   /**
