@@ -34,10 +34,10 @@ public class ControlPanel extends SubsystemBase {
   private static boolean conPanFlipSol = false;
 
   //Color target declarations
-  private final Color kBlueTarget;
-  private final Color kGreenTarget;
-  private final Color kRedTarget;
-  private final Color kYellowTarget;
+  private final Color BLUE_TARGET;
+  private final Color GREEN_TARGET;
+  private final Color RED_TARGET;
+  private final Color YELLOW_TARGET;
 
   //REV object declarations
   public final ColorSensorV3 m_colorSensor;
@@ -62,16 +62,16 @@ public class ControlPanel extends SubsystemBase {
     m_colorMatcher = new ColorMatch();
     
     //Calibrates RGB values colors
-    kBlueTarget = ColorMatch.makeColor(conPanConstants.blue[0], conPanConstants.blue[1], conPanConstants.blue[2]);
-    kGreenTarget = ColorMatch.makeColor(conPanConstants.green[0], conPanConstants.green[1], conPanConstants.green[2]);
-    kRedTarget = ColorMatch.makeColor(conPanConstants.red[0], conPanConstants.red[1], conPanConstants.red[2]);
-    kYellowTarget = ColorMatch.makeColor(conPanConstants.yellow[0], conPanConstants.yellow[1], conPanConstants.yellow[2]);
+    BLUE_TARGET = ColorMatch.makeColor(conPanConstants.blue[0], conPanConstants.blue[1], conPanConstants.blue[2]);
+    GREEN_TARGET = ColorMatch.makeColor(conPanConstants.green[0], conPanConstants.green[1], conPanConstants.green[2]);
+    RED_TARGET = ColorMatch.makeColor(conPanConstants.red[0], conPanConstants.red[1], conPanConstants.red[2]);
+    YELLOW_TARGET = ColorMatch.makeColor(conPanConstants.yellow[0], conPanConstants.yellow[1], conPanConstants.yellow[2]);
 
     //Assigns colors to matcher
-    m_colorMatcher.addColorMatch(kBlueTarget);
-    m_colorMatcher.addColorMatch(kGreenTarget);
-    m_colorMatcher.addColorMatch(kRedTarget);
-    m_colorMatcher.addColorMatch(kYellowTarget);
+    m_colorMatcher.addColorMatch(BLUE_TARGET);
+    m_colorMatcher.addColorMatch(GREEN_TARGET);
+    m_colorMatcher.addColorMatch(RED_TARGET);
+    m_colorMatcher.addColorMatch(YELLOW_TARGET);
   } 
 
   //Used to set conPan down when initialized
@@ -89,16 +89,16 @@ public class ControlPanel extends SubsystemBase {
   public void matchColor() {  
   match = m_colorMatcher.matchClosestColor(detectedColor);
 
-    if (match.color == kBlueTarget) {
+    if (match.color == BLUE_TARGET) {
       colorString = "Blue";
     } 
-    else if (match.color == kRedTarget) {
+    else if (match.color == RED_TARGET) {
       colorString = "Red";
     } 
-    else if (match.color == kGreenTarget) {
+    else if (match.color == GREEN_TARGET) {
       colorString = "Green";
     } 
-    else if (match.color == kYellowTarget) {
+    else if (match.color == YELLOW_TARGET) {
       colorString = "Yellow";
     } 
     else {

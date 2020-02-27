@@ -40,8 +40,8 @@ public final class Constants {
 
     public static final class joyStickConstants {
         public static final int STICK_PORT = 0;
-        public static final int Y_AXIS = 1;
         public static final int X_AXIS = 0;
+        public static final int Y_AXIS = 1;
         public static final int ROTATE = 2;
         public static final int SLIDER_AXIS = 3;
         public static final int TRIGGER = 1;
@@ -52,12 +52,12 @@ public final class Constants {
     public static final class xBoxConstants {
         public static final int OPERATOR_PORT = 1;
         public static final int RY_AXIS = 5;
-        public static final int A_BUTTON = 1; //fuelCellSol
-        public static final int B_BUTTON = 2; //conPanMot
-        public static final int X_BUTTON = 3; //fuelCellMot
-        public static final int Y_BUTTON = 4; //conPanSol
-        public static final int L_BUMPER = 5;
-        public static final int R_BUMPER = 6;
+        public static final int A_BUTTON = 1; //FuelCellSol
+        public static final int B_BUTTON = 2; //ConPanSol
+        public static final int X_BUTTON = 3; //RotateConPan
+        public static final int Y_BUTTON = 4; //SetColor
+        public static final int L_BUMPER = 5; //fuelCellMotIn
+        public static final int R_BUMPER = 6; //fuelCellMotOut
     }
 
     public static final class fuelCellConstants {
@@ -70,8 +70,8 @@ public final class Constants {
     public static final class conPanConstants {
         public static final int talon = 15;
         public static final double conPanMotSpeed = 0.25;        
-        public static final int lowerConPan = 2;
-        public static final int raiseConPan = 3;
+        public static final int lowerConPan = 3;
+        public static final int raiseConPan = 2;
 
         //Color Sensor constants
         public static final I2C.Port i2cPort = I2C.Port.kOnboard;

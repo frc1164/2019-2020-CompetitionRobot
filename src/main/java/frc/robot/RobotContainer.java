@@ -23,20 +23,20 @@ import frc.robot.subsystems.FuelCell;
 import frc.robot.subsystems.Chassis;
 import frc.robot.subsystems.ControlPanel;
 
-//Drive commands
+//Chassis commands
 import frc.robot.commands.ChangeGear;
 import frc.robot.commands.Drive;
-
 
 //FuelCell commands
 import frc.robot.commands.FuelCellSol;
 import frc.robot.commands.FuelCellMotIn;
 import frc.robot.commands.FuelCellMotOut;
 
-//ConPan commands
-import frc.robot.commands.RaiseConPan;
-import frc.robot.commands.LowerConPan;
+//ControlPanel commands
+import frc.robot.commands.ConPanSol;
 import frc.robot.commands.ConPanMot;
+import frc.robot.commands.SetColor;
+import frc.robot.commands.RotateConPan;
 
 /**
  * This class is where the bulk of the robot should be declared.  Since Command-based is a
@@ -104,17 +104,17 @@ public class RobotContainer {
                        .whileHeld(new FuelCellMotOut(m_FuelCell));
 
     //ControlPanel buttons
+    new JoystickButton(m_OperatorController, xBoxConstants.B_BUTTON)
+                       .whenPressed(new ConPanSol(m_ControlPanel));
+
+    /*new JoystickButton(m_OperatorController, xBoxConstants.X_BUTTON)
+                       .whileHeld(new ConPanMot(m_ControlPanel));*/
+                       
     new JoystickButton(m_OperatorController, xBoxConstants.Y_BUTTON)
-                       .whenPressed(new RaiseConPan(m_ControlPanel));
+                        .whenPressed(new SetColor(m_ControlPanel));
 
-    new JoystickButton(m_OperatorController, xBoxConstants.B_BUTTON)
-                       .whenPressed(new LowerConPan(m_ControlPanel));
-
-    new JoystickButton(m_OperatorController, xBoxConstants.B_BUTTON)
-                       .whenPressed(new LowerConPan(m_ControlPanel));
-
-    new JoystickButton(m_OperatorController, xBoxConstants.A_BUTTON)
-                       .whileHeld(new ConPanMot(m_ControlPanel));
+    new JoystickButton(m_OperatorController, xBoxConstants.X_BUTTON)
+                        .whenPressed(new RotateConPan(m_ControlPanel));
   }
 
   /**
