@@ -7,6 +7,7 @@
 
 package frc.robot.commands;
 import edu.wpi.first.wpilibj2.command.CommandBase;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import com.revrobotics.ColorMatch;
 import frc.robot.subsystems.ControlPanel;
 import frc.robot.Constants.conPanConstants;
@@ -18,7 +19,7 @@ public class RotateConPan extends CommandBase {
     public String currentColor;
     public int numChanges;
     public final int changesPerRotation = 8;
-    public final int numRotations = 4;
+    public final int numRotations = 5;
 
   public RotateConPan(ControlPanel m_ControlPanel) {
     // Use addRequirements() here to declare subsystem dependencies.
@@ -36,8 +37,8 @@ public class RotateConPan extends CommandBase {
   public void execute() {
     m_ControlPanel.getColor();
     m_ControlPanel.matchColor();
-    
-    numChanges = 0;
+    m_ControlPanel.printColor();
+
     lastColor = ControlPanel.colorString;
 
     double setConPanMotSpeed = conPanConstants.conPanMotSpeed;
@@ -48,17 +49,21 @@ public class RotateConPan extends CommandBase {
         m_ControlPanel.matchColor();
         currentColor = ControlPanel.colorString;
         
+        //smartDashboard stuff
+        m_ControlPanel.printColor();
+        SmartDashboard.putNumber("numChanges", numChanges);
+        
         if (currentColor.equals(lastColor) == false) {
           ++numChanges;
           lastColor = currentColor;
         }
     }
-    m_ControlPanel.conPanSpeed(0.0);
   }
 
   // Called once the command ends or is interrupted.
   @Override
   public void end(boolean interrupted) {
+    m_ControlPanel.conPanSpeed(0.0);
   }
 
   // Returns true when the command should end.

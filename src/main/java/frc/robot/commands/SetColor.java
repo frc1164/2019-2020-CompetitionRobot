@@ -14,7 +14,7 @@ import frc.robot.Constants.conPanConstants;
 public class SetColor extends CommandBase {
   public ControlPanel m_controlPanel;
   public ColorMatch m_colorMatcher;
-  public boolean isMatched;
+  private boolean isMatched;
 
   public SetColor(ControlPanel m_controlPanel) {
     // Use addRequirements() here to declare subsystem dependencies.
@@ -37,10 +37,11 @@ public class SetColor extends CommandBase {
 
     //if the SmartDashboard output 'colorString' is not equal to the String 'FMScolor,' run the motor
     if (ControlPanel.colorString.compareTo(conPanConstants.FMScolor) != 0) {
-      m_controlPanel.conPanSpeed(conPanConstants.conPanMotSpeed);
+      m_controlPanel.conPanSpeed(0.2);
     }
     //else, end the command and turn off the motor
     else {
+      // Here, buttonReleased means that the command has done its job should end.
       isMatched = true;
     }
   }
@@ -48,7 +49,7 @@ public class SetColor extends CommandBase {
   // Called once the command ends or is interrupted.
   @Override
   public void end(boolean interrupted) {
-    m_controlPanel.conPanSpeed(0);
+    m_controlPanel.conPanSpeed(0.0);
   }
 
   // Returns true when the command should end.
