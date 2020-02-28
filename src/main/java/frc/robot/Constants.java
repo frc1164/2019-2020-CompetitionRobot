@@ -36,6 +36,9 @@ public final class Constants {
         public static final int leftEncoderChanB = 1;
         public static final int rightEncoderChanA = 2;
         public static final int rightEncoderChanB = 3;
+
+        public static final int ultrasonicPort = 1;
+        public static final double valueToInches = 0.125;
     }
 
     public static final class joyStickConstants {

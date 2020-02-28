@@ -13,18 +13,22 @@ import com.ctre.phoenix.motorcontrol.can.VictorSPX;
 
 //WPILIB libraries
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj.Solenoid;
+import edu.wpi.first.wpilibj.AnalogInput;
 
 //Local imports
 import frc.robot.Constants.driveConstants;
 
 public class Chassis extends SubsystemBase {
-  private final VictorSPX leftMotorRear = new VictorSPX(driveConstants.leftMotorRear);
-  private final VictorSPX rightMotorRear = new VictorSPX(driveConstants.rightMotorRear);
-  private final VictorSPX leftMotorFront = new VictorSPX(driveConstants.leftMotorFront);
-  private final VictorSPX rightMotorFront = new VictorSPX(driveConstants.rightMotorFront);
   private final Solenoid LowSol, HighSol;
+  private final VictorSPX leftMotorRear;
+  private final VictorSPX rightMotorRear;
+  private final VictorSPX leftMotorFront;
+  private final VictorSPX rightMotorFront;
   private static boolean m_changeGear = false;
+  private double currentDistance;
+  private final AnalogInput m_ultrasonic;
 
   /**
    * Creates a new Chassis.
@@ -32,6 +36,11 @@ public class Chassis extends SubsystemBase {
   public Chassis() {
     LowSol = new Solenoid(driveConstants.PCM, driveConstants.LowSol);                      
     HighSol = new Solenoid(driveConstants.PCM, driveConstants.HighSol);
+    leftMotorRear = new VictorSPX(driveConstants.leftMotorRear);
+    rightMotorRear = new VictorSPX(driveConstants.rightMotorRear);
+    leftMotorFront = new VictorSPX(driveConstants.leftMotorFront);
+    rightMotorFront = new VictorSPX(driveConstants.rightMotorFront);
+    m_ultrasonic = new AnalogInput(driveConstants.ultrasonicPort);
   }
 
   //Used to set to low gear when initialized
@@ -58,6 +67,12 @@ public class Chassis extends SubsystemBase {
     Chassis.m_changeGear = !Chassis.m_changeGear;
     LowSol.set(!Chassis.m_changeGear);
     HighSol.set(Chassis.m_changeGear);
+  }
+
+  public void getUltraSonicValue() {
+    // sensor returns a value from 0-4095 that is scaled to inches
+    currentDistance = m_ultrasonic.getValue() * driveConstants.valueToInches;
+    SmartDashboard.putNumber("Current distance (in)", currentDistance);
   }
 
   @Override
