@@ -13,9 +13,7 @@ import com.ctre.phoenix.motorcontrol.can.VictorSPX;
 
 //WPILIB libraries
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
-import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj.Solenoid;
-import edu.wpi.first.wpilibj.AnalogInput;
 
 //Local imports
 import frc.robot.Constants.driveConstants;
@@ -27,8 +25,6 @@ public class Chassis extends SubsystemBase {
   private final VictorSPX leftMotorFront;
   private final VictorSPX rightMotorFront;
   private static boolean m_changeGear = false;
-  private double currentDistance;
-  private final AnalogInput m_ultrasonic;
 
   /**
    * Creates a new Chassis.
@@ -40,7 +36,6 @@ public class Chassis extends SubsystemBase {
     rightMotorRear = new VictorSPX(driveConstants.rightMotorRear);
     leftMotorFront = new VictorSPX(driveConstants.leftMotorFront);
     rightMotorFront = new VictorSPX(driveConstants.rightMotorFront);
-    m_ultrasonic = new AnalogInput(driveConstants.ultrasonicPort);
   }
 
   //Used to set to low gear when initialized
@@ -67,12 +62,6 @@ public class Chassis extends SubsystemBase {
     Chassis.m_changeGear = !Chassis.m_changeGear;
     LowSol.set(!Chassis.m_changeGear);
     HighSol.set(Chassis.m_changeGear);
-  }
-
-  public void getUltraSonicValue() {
-    // sensor returns a value from 0-4095 that is scaled to inches
-    currentDistance = m_ultrasonic.getValue() * driveConstants.valueToInches;
-    SmartDashboard.putNumber("Current distance (in)", currentDistance);
   }
 
   @Override
