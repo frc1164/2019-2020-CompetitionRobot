@@ -22,6 +22,7 @@ import frc.robot.Constants.xBoxConstants;
 import frc.robot.subsystems.FuelCell;
 import frc.robot.subsystems.Chassis;
 import frc.robot.subsystems.ControlPanel;
+import frc.robot.subsystems.Climb;
 
 //Chassis commands
 import frc.robot.commands.ChangeGear;
@@ -37,6 +38,12 @@ import frc.robot.commands.ConPanSol;
 import frc.robot.commands.SetColor;
 import frc.robot.commands.RotateConPan;
 
+//Climb commands
+import frc.robot.commands.LowerClimb;
+import frc.robot.commands.RaiseClimb;
+import frc.robot.commands.Winch;
+
+
 /**
  * This class is where the bulk of the robot should be declared.  Since Command-based is a
  * "declarative" paradigm, very little robot logic should actually be handled in the {@link Robot}
@@ -49,6 +56,8 @@ public class RobotContainer {
   private final Drive m_Drive;
   private final FuelCell m_FuelCell;
   private final ControlPanel m_ControlPanel;
+  private final Climb m_Climb;
+  private final Winch m_Winch;
   public static Joystick m_DriverStick;
   public static XboxController m_OperatorController;
 
@@ -61,12 +70,16 @@ public class RobotContainer {
     m_Chassis = new Chassis();
     m_FuelCell = new FuelCell();
     m_ControlPanel = new ControlPanel();
+    m_Climb = new Climb();
 
     //Set Autonomous Commands
 
     //Set Default Commands
     m_Drive = new Drive(m_Chassis);
     m_Chassis.setDefaultCommand(m_Drive);
+
+    m_Winch = new Winch(m_Climb);
+    m_Climb.setDefaultCommand(m_Winch);
     
     //Define Controller
     m_DriverStick = new Joystick(joyStickConstants.STICK_PORT);
@@ -79,6 +92,7 @@ public class RobotContainer {
     m_Chassis.chassisInit();
     m_ControlPanel.conPanInit();
     m_FuelCell.fuelCellInit();
+    //m_Climb.climbInit();
   }
 
   /**
@@ -92,25 +106,12 @@ public class RobotContainer {
     new JoystickButton(m_DriverStick, joyStickConstants.BUTTON_3)
                        .whenPressed(new ChangeGear(m_Chassis));
 
-    //FuelCell buttons                       
-    new JoystickButton(m_OperatorController, xBoxConstants.A_BUTTON)
-                       .whenPressed(new FuelCellSol(m_FuelCell));
-                       
-    new JoystickButton(m_OperatorController, xBoxConstants.L_BUMPER)
-                      .whileHeld(new FuelCellMotIn(m_FuelCell));
-
-    new JoystickButton(m_OperatorController, xBoxConstants.R_BUMPER)
-                       .whileHeld(new FuelCellMotOut(m_FuelCell));
-
-    //ControlPanel buttons
+    //Climb buttons    
     new JoystickButton(m_OperatorController, xBoxConstants.B_BUTTON)
-                       .whenPressed(new ConPanSol(m_ControlPanel));
-    
-    new JoystickButton(m_OperatorController, xBoxConstants.X_BUTTON)
-                       .whenPressed(new RotateConPan(m_ControlPanel));
+                       .whenPressed(new RaiseClimb(m_Climb));
                        
-    new JoystickButton(m_OperatorController, xBoxConstants.Y_BUTTON)
-                        .whenPressed(new SetColor(m_ControlPanel));
+    new JoystickButton(m_OperatorController, xBoxConstants.A_BUTTON)
+                        .whenPressed(new LowerClimb(m_Climb));
   }
 
   /**

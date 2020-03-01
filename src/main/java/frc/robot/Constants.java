@@ -48,7 +48,7 @@ public final class Constants {
         public static final int ROTATE = 2;
         public static final int SLIDER_AXIS = 3;
         public static final int TRIGGER = 1;
-        public static final int BUTTON_3 = 3; //changeGear
+        public static final int BUTTON_3 = 3; //ChangeGear
         public static final int BUTTON_4 = 4;
     }
 
@@ -83,5 +83,14 @@ public final class Constants {
         public static final double[] red = {0.561, 0.232, 0.114};
         public static final double[] yellow = {0.361, 0.524, 0.113};
         public static final String FMScolor = "Green";
+    }
+
+    public static final class climbConstants {
+        public static final int winchMot1 = 1;
+        public static final int winchMot2 = 14;
+        public static final boolean invertWinchMot1 = false; //Check
+        public static final boolean invertWinchMot2 = false; //Check
+        public static final int climbExtend = 6; //Solenoids may need to be reversed
+        public static final int climbRetract = 7; //Solenoids may need to be reversed
     }
 }
