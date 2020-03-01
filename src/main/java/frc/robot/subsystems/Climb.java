@@ -11,6 +11,7 @@ import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import edu.wpi.first.wpilibj.Solenoid;
 import edu.wpi.first.wpilibj.Victor;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+import edu.wpi.first.wpilibj.DigitalInput;
 
 import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.can.VictorSPX;
@@ -22,6 +23,8 @@ public class Climb extends SubsystemBase {
   private final VictorSPX winchMot2;
   private final Solenoid climbExtend;
   private final Solenoid climbRetract;
+  private static DigitalInput limitSwitch;
+
   /**
    * Creates a new Climb.
    */
@@ -30,9 +33,15 @@ public class Climb extends SubsystemBase {
     winchMot2 = new VictorSPX(climbConstants.winchMot2);
     climbExtend = new Solenoid(climbConstants.climbExtend);
     climbRetract = new Solenoid(climbConstants.climbRetract);
+    limitSwitch = new DigitalInput(driveConstants.limitSwitchPort);
   }
 
   public void climbInit() {
+    climbExtend.set(false);
+    climbRetract.set(true);
+  }
+  
+  public void lowerClimb() {
     climbExtend.set(false);
     climbRetract.set(true);
   }
@@ -40,11 +49,6 @@ public class Climb extends SubsystemBase {
   public void raiseClimb() {
     climbRetract.set(false);
     climbExtend.set(true);
-  }
-
-  public void lowerClimb() {
-    climbExtend.set(false);
-    climbRetract.set(true);
   }
   
   public void winchSpeed(double speed) {
