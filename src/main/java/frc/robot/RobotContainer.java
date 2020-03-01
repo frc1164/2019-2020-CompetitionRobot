@@ -116,10 +116,7 @@ public class RobotContainer {
                         .whenPressed(new LowerClimb(m_Climb));
 
     new JoystickButton(m_OperatorController, xBoxConstants.B_BUTTON)
-                        .whenPressed(new RaiseConPan(m_ControlPanel));
-
-    new JoystickButton(m_OperatorController, xBoxConstants.A_BUTTON)
-                        .whenPressed(new LowerConPan(m_ControlPanel));
+                        .whenPressed(new ConPanSol(m_ControlPanel));
   }
 
   /**
