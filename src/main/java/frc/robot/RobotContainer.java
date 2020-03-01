@@ -109,7 +109,7 @@ public class RobotContainer {
     new JoystickButton(m_OperatorController, xBoxConstants.X_BUTTON)
                        .whenPressed(new RotateConPan(m_ControlPanel));
                        
-    new JoystickButton(m_OperatorController, xBoxConstants.Y_BUTTON)
+    new JoystickButton(m_OperatorController, xBoxConstants.Y_BUTTON) 
                         .whenPressed(new SetColor(m_ControlPanel));
   }
 
