@@ -36,9 +36,6 @@ public final class Constants {
         public static final int leftEncoderChanB = 1;
         public static final int rightEncoderChanA = 2;
         public static final int rightEncoderChanB = 3;
-
-        public static final int ultrasonicPort = 1;
-        public static final double valueToInches = 0.125;
     }
 
     public static final class joyStickConstants {
@@ -48,7 +45,7 @@ public final class Constants {
         public static final int ROTATE = 2;
         public static final int SLIDER_AXIS = 3;
         public static final int TRIGGER = 1;
-        public static final int BUTTON_3 = 3; //ChangeGear
+        public static final int BUTTON_3 = 3; //changeGear
         public static final int BUTTON_4 = 4;
     }
 
@@ -92,5 +89,6 @@ public final class Constants {
         public static final boolean invertWinchMot2 = false; //Check
         public static final int climbExtend = 6; //Solenoids may need to be reversed
         public static final int climbRetract = 7; //Solenoids may need to be reversed
+        public static final int limitSwitchPort = 0;
     }
 }

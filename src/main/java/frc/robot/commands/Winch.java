@@ -8,15 +8,18 @@
 package frc.robot.commands;
 
 import edu.wpi.first.wpilibj2.command.CommandBase;
+import edu.wpi.first.wpilibj.DigitalInput;
 
 import frc.robot.RobotContainer;
 import frc.robot.Constants.xBoxConstants;
+import frc.robot.Constants.climbConstants;
 import frc.robot.subsystems.Climb;
 
 public class Winch extends CommandBase {
   private final Climb m_Climb;
   private static boolean switchState;
   private static boolean switchTriggered = false;
+  private static DigitalInput limitSwitch;
 
   /**
    * Creates a new Winch.
@@ -30,6 +33,7 @@ public class Winch extends CommandBase {
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {
+    limitSwitch = new DigitalInput(climbConstants.limitSwitchPort);
   }
 
   // Called every time the scheduler runs while the command is scheduled.

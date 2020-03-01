@@ -23,7 +23,6 @@ public class Climb extends SubsystemBase {
   private final VictorSPX winchMot2;
   private final Solenoid climbExtend;
   private final Solenoid climbRetract;
-  private static DigitalInput limitSwitch;
 
   /**
    * Creates a new Climb.
@@ -33,7 +32,6 @@ public class Climb extends SubsystemBase {
     winchMot2 = new VictorSPX(climbConstants.winchMot2);
     climbExtend = new Solenoid(climbConstants.climbExtend);
     climbRetract = new Solenoid(climbConstants.climbRetract);
-    limitSwitch = new DigitalInput(driveConstants.limitSwitchPort);
   }
 
   public void climbInit() {
