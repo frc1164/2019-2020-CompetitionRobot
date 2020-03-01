@@ -37,6 +37,8 @@ import frc.robot.commands.FuelCellMotOut;
 import frc.robot.commands.ConPanSol;
 import frc.robot.commands.SetColor;
 import frc.robot.commands.RotateConPan;
+import frc.robot.commands.RaiseConPan;
+import frc.robot.commands.LowerConPan;
 
 //Climb commands
 import frc.robot.commands.LowerClimb;
@@ -89,9 +91,9 @@ public class RobotContainer {
     configureButtonBindings();
 
     //Initialization methods
-    m_Chassis.chassisInit();
-    m_ControlPanel.conPanInit();
-    m_FuelCell.fuelCellInit();
+    //m_Chassis.chassisInit();
+    //m_ControlPanel.conPanInit();
+    //m_FuelCell.fuelCellInit();
     //m_Climb.climbInit();
   }
 
@@ -107,11 +109,17 @@ public class RobotContainer {
                        .whenPressed(new ChangeGear(m_Chassis));
 
     //Climb buttons    
-    new JoystickButton(m_OperatorController, xBoxConstants.B_BUTTON)
+    new JoystickButton(m_OperatorController, xBoxConstants.Y_BUTTON)
                        .whenPressed(new RaiseClimb(m_Climb));
                        
-    new JoystickButton(m_OperatorController, xBoxConstants.A_BUTTON)
+    new JoystickButton(m_OperatorController, xBoxConstants.X_BUTTON)
                         .whenPressed(new LowerClimb(m_Climb));
+
+    new JoystickButton(m_OperatorController, xBoxConstants.B_BUTTON)
+                        .whenPressed(new RaiseConPan(m_ControlPanel));
+
+    new JoystickButton(m_OperatorController, xBoxConstants.A_BUTTON)
+                        .whenPressed(new LowerConPan(m_ControlPanel));
   }
 
   /**

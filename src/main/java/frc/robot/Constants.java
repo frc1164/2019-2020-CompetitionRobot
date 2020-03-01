@@ -69,9 +69,9 @@ public final class Constants {
 
     public static final class conPanConstants {
         public static final int talon = 15;
-        public static final double conPanMotSpeed = 0.25;        
-        public static final int lowerConPan = 3;
-        public static final int raiseConPan = 2;
+        public static final double conPanMotSpeed = 0.25;   
+        public static final int raiseConPan = 2;   //not firing  
+        public static final int lowerConPan = 3; 
 
         //Color Sensor constants
         public static final I2C.Port i2cPort = I2C.Port.kOnboard;
@@ -85,8 +85,8 @@ public final class Constants {
     public static final class climbConstants {
         public static final int winchMot1 = 1;
         public static final int winchMot2 = 14;
-        public static final boolean invertWinchMot1 = false; //Check
-        public static final boolean invertWinchMot2 = false; //Check
+        public static final boolean invertWinchMot1 = false;
+        public static final boolean invertWinchMot2 = false;
         public static final int climbExtend = 6; //Solenoids may need to be reversed
         public static final int climbRetract = 7; //Solenoids may need to be reversed
         public static final int limitSwitchPort = 0;

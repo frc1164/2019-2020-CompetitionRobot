@@ -9,6 +9,7 @@ package frc.robot.commands;
 
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.subsystems.Climb;
+import frc.robot.commands.RaiseConPan;
 
 public class RaiseClimb extends CommandBase {
   private final Climb m_Climb;
