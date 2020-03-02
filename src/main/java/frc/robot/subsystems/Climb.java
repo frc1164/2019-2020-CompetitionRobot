@@ -14,6 +14,7 @@ import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.can.VictorSPX;
 
 import frc.robot.Constants.climbConstants;
+import frc.robot.Constants.driveConstants;
 
 public class Climb extends SubsystemBase {
   private final VictorSPX winchMot1;
@@ -27,13 +28,8 @@ public class Climb extends SubsystemBase {
   public Climb() {
     winchMot1 = new VictorSPX(climbConstants.winchMot1);
     winchMot2 = new VictorSPX(climbConstants.winchMot2);
-    climbExtend = new Solenoid(climbConstants.climbExtend);
-    climbRetract = new Solenoid(climbConstants.climbRetract);
-  }
-
-  public void climbInit() {
-    climbExtend.set(false);
-    climbRetract.set(true);
+    climbExtend = new Solenoid(driveConstants.PCM, climbConstants.climbExtend);
+    climbRetract = new Solenoid(driveConstants.PCM, climbConstants.climbRetract);
   }
   
   public void lowerClimb() {

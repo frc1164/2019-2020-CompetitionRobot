@@ -94,7 +94,7 @@ public class RobotContainer {
     //m_Chassis.chassisInit();
     //m_ControlPanel.conPanInit();
     //m_FuelCell.fuelCellInit();
-    //m_Climb.climbInit();
+    //m_Climb.lowerClimb();
   }
 
   /**
@@ -117,6 +117,9 @@ public class RobotContainer {
 
     new JoystickButton(m_OperatorController, xBoxConstants.B_BUTTON)
                         .whenPressed(new ConPanSol(m_ControlPanel));
+
+    new JoystickButton(m_OperatorController, xBoxConstants.A_BUTTON)
+                        .whenPressed(new FuelCellSol(m_FuelCell));
   }
 
   /**
