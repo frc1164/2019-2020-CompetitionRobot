@@ -36,9 +36,6 @@ public final class Constants {
         public static final int leftEncoderChanB = 1;
         public static final int rightEncoderChanA = 2;
         public static final int rightEncoderChanB = 3;
-
-        public static final int ultrasonicPort = 1;
-        public static final double valueToInches = 0.125;
     }
 
     public static final class joyStickConstants {
@@ -72,9 +69,9 @@ public final class Constants {
 
     public static final class conPanConstants {
         public static final int talon = 15;
-        public static final double conPanMotSpeed = 0.25;        
-        public static final int lowerConPan = 3;
-        public static final int raiseConPan = 2;
+        public static final double conPanMotSpeed = 0.25;   
+        public static final int raiseConPan = 2;   //not firing  
+        public static final int lowerConPan = 3; 
 
         //Color Sensor constants
         public static final I2C.Port i2cPort = I2C.Port.kOnboard;
@@ -83,5 +80,15 @@ public final class Constants {
         public static final double[] red = {0.561, 0.232, 0.114};
         public static final double[] yellow = {0.361, 0.524, 0.113};
         public static final String FMScolor = "Green";
+    }
+
+    public static final class climbConstants {
+        public static final int winchMot1 = 1;
+        public static final int winchMot2 = 14;
+        public static final boolean invertWinchMot1 = false;
+        public static final boolean invertWinchMot2 = false;
+        public static final int climbExtend = 6; //Solenoids may need to be reversed
+        public static final int climbRetract = 7; //Solenoids may need to be reversed
+        public static final int limitSwitchPort = 0;
     }
 }
