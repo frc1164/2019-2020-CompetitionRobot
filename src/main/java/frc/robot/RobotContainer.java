@@ -37,8 +37,6 @@ import frc.robot.commands.FuelCellMotOut;
 import frc.robot.commands.ConPanSol;
 import frc.robot.commands.SetColor;
 import frc.robot.commands.RotateConPan;
-import frc.robot.commands.RaiseConPan;
-import frc.robot.commands.LowerConPan;
 
 //Climb commands
 import frc.robot.commands.LowerClimb;
