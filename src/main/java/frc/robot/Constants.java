@@ -52,12 +52,21 @@ public final class Constants {
     public static final class xBoxConstants {
         public static final int OPERATOR_PORT = 1;
         public static final int RY_AXIS = 5;
+        public static final int LY_AXIS = 1; //Winch
         public static final int A_BUTTON = 1; //FuelCellSol
         public static final int B_BUTTON = 2; //ConPanSol
-        public static final int X_BUTTON = 3; //RotateConPan
-        public static final int Y_BUTTON = 4; //SetColor
+        public static final int X_BUTTON = 3; 
+        public static final int Y_BUTTON = 4; 
         public static final int L_BUMPER = 5; //fuelCellMotIn
         public static final int R_BUMPER = 6; //fuelCellMotOut
+        public static final int BACK = 7; //RotateConPan
+        public static final int START = 8; //SetColor
+
+        //POV buttons
+        public static final int POV_1 = 1;
+        public static final int POV_2 = 2; //RaiseClimb
+        public static final int POV_6 = 6; //LowerClimb
+        public static final int POV_4 = 4;
     }
 
     public static final class fuelCellConstants {

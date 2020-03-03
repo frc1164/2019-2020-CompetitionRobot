@@ -37,7 +37,7 @@ public class Winch extends CommandBase {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    if (!limitSwitch.get() && (RobotContainer.m_OperatorController.getRawAxis(xBoxConstants.RY_AXIS) < 0)) {
+    if (!limitSwitch.get() && (RobotContainer.m_OperatorController.getRawAxis(xBoxConstants.LY_AXIS) < 0)) {
           m_Climb.winchSpeed(0.0);
     }
     else {

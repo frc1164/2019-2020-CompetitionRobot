@@ -9,7 +9,7 @@ package frc.robot;
 
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
-
+import edu.wpi.first.wpilibj2.command.button.POVButton;
 //Controllers
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.XboxController;
@@ -104,16 +104,41 @@ public class RobotContainer {
    * {@link edu.wpi.first.wpilibj2.command.button.JoystickButton}.
    */
   private void configureButtonBindings() {
-    //Drive buttons
+    //Chassis buttons
     new JoystickButton(m_DriverStick, joyStickConstants.BUTTON_3)
                        .whenPressed(new ChangeGear(m_Chassis));
 
+    //FuelCell buttons
+    new JoystickButton(m_OperatorController, xBoxConstants.L_BUMPER)
+                      .whenPressed(new FuelCellMotIn(m_FuelCell));
+
+    new JoystickButton(m_OperatorController, xBoxConstants.R_BUMPER)
+                      .whenPressed(new FuelCellMotOut(m_FuelCell));
+
+    new JoystickButton(m_OperatorController, xBoxConstants.A_BUTTON)
+                      .whenPressed(new FuelCellSol(m_FuelCell));
+
+    //ControlPanel buttons
+    new JoystickButton(m_OperatorController, xBoxConstants.B_BUTTON)
+                      .whenPressed(new ConPanSol(m_ControlPanel));
+    
+    new JoystickButton(m_OperatorController, xBoxConstants.BACK)
+                      .whenPressed(new RotateConPan(m_ControlPanel));
+
+    new JoystickButton(m_OperatorController, xBoxConstants.START)
+                      .whenPressed(new SetColor(m_ControlPanel));
+
     //Climb buttons    
-    new JoystickButton(m_OperatorController, xBoxConstants.Y_BUTTON)
+    new POVButton(m_OperatorController, xBoxConstants.POV_2)
                        .whenPressed(new RaiseClimb(m_Climb));
                        
-    new JoystickButton(m_OperatorController, xBoxConstants.X_BUTTON)
+    new POVButton(m_OperatorController, xBoxConstants.POV_6)
                         .whenPressed(new LowerClimb(m_Climb));
+
+    
+
+
+
   }
 
   /**
