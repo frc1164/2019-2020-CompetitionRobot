@@ -37,6 +37,7 @@ public class Climb extends SubsystemBase {
     climbRetract.set(true);
   }
 
+  //Make sure you raise the ControlPanel before calling this method
   public void raiseClimb() {
     climbRetract.set(false);
     climbExtend.set(true);

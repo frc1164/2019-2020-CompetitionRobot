@@ -23,7 +23,7 @@ import frc.robot.Constants.driveConstants;
 public class FuelCell extends SubsystemBase {
   private final VictorSPX fuelCellMot;
   private final Solenoid raiseHopper;
-  private final Solenoid lowerHopper; //Change to "sol"
+  private final Solenoid lowerHopper;
   private static boolean fuelCellFlipSol = false;
 
   /**
@@ -36,7 +36,8 @@ public class FuelCell extends SubsystemBase {
   }
 
   //Used to set hopper down when initialized
-  public void fuelCellInit() {
+  public void lowerFuelCell() {
+    FuelCell.fuelCellFlipSol = false;
     raiseHopper.set(false);
     lowerHopper.set(true);
   }

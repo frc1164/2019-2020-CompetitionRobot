@@ -41,13 +41,13 @@ public class Winch extends CommandBase {
           m_Climb.winchSpeed(0.0);
     }
     else {
-      double runWinch = RobotContainer.m_OperatorController.getRawAxis(xBoxConstants.RY_AXIS);
+      double runWinch = RobotContainer.m_OperatorController.getRawAxis(xBoxConstants.LY_AXIS);
 
       runWinch = (Math.abs(runWinch) <= 0.05) ? 0 : runWinch; 
 
-      double winchMotSpeed = (runWinch);
+      double winchMotSpeed = runWinch;
 
-      m_Climb.winchSpeed(winchMotSpeed);
+      m_Climb.winchSpeed(-winchMotSpeed);
     }
   }
 

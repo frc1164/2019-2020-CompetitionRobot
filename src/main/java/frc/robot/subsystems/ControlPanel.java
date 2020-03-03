@@ -73,12 +73,6 @@ public class ControlPanel extends SubsystemBase {
     m_colorMatcher.addColorMatch(RED_TARGET);
     m_colorMatcher.addColorMatch(YELLOW_TARGET);
   } 
-
-  //Used to set conPan down when initialized
-  public void conPanInit() {
-    raiseConPan.set(false);
-    lowerConPan.set(true);
-  }
     
   //Gets color (helpful for LED programming, etc.)
   public void getColor() {
@@ -120,7 +114,7 @@ public class ControlPanel extends SubsystemBase {
     SmartDashboard.putNumber("conPanTalon", conPanSpeed);
   }
 
-  //Toggle ConPanSol CURRENTLY NOT USED
+  //Toggle ConPanSol
   public void conPanflipSol() {
     ControlPanel.conPanFlipSol = !ControlPanel.conPanFlipSol;
     lowerConPan.set(!ControlPanel.conPanFlipSol);
@@ -130,12 +124,14 @@ public class ControlPanel extends SubsystemBase {
 
   //Control Panel solenoid
   public void lowerConPanSol() {
+    ControlPanel.conPanFlipSol = false;
     raiseConPan.set(false);
     lowerConPan.set(true);
   }
 
   //Control Panel solenoid
   public void raiseConPanSol() {
+    ControlPanel.conPanFlipSol = true;
     lowerConPan.set(false);
     raiseConPan.set(true);
   }

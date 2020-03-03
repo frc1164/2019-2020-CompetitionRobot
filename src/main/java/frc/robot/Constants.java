@@ -63,10 +63,8 @@ public final class Constants {
         public static final int START = 8; //SetColor
 
         //POV buttons
-        public static final int POV_1 = 1;
-        public static final int POV_2 = 2; //RaiseClimb
-        public static final int POV_6 = 6; //LowerClimb
-        public static final int POV_4 = 4;
+        public static final int POV_UP = 0; //RaiseClimb
+        public static final int POV_DOWN = 180; //LowerClimb
     }
 
     public static final class fuelCellConstants {

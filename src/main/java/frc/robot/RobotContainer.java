@@ -91,10 +91,10 @@ public class RobotContainer {
     configureButtonBindings();
 
     //Initialization methods
-    //m_Chassis.chassisInit();
-    //m_ControlPanel.conPanInit();
-    //m_FuelCell.fuelCellInit();
-    //m_Climb.lowerClimb();
+    m_Chassis.chassisInit();
+    m_ControlPanel.lowerConPanSol();
+    m_FuelCell.lowerFuelCell();
+    m_Climb.lowerClimb();
   }
 
   /**
@@ -110,10 +110,10 @@ public class RobotContainer {
 
     //FuelCell buttons
     new JoystickButton(m_OperatorController, xBoxConstants.L_BUMPER)
-                      .whenPressed(new FuelCellMotIn(m_FuelCell));
+                      .whileHeld(new FuelCellMotIn(m_FuelCell));
 
     new JoystickButton(m_OperatorController, xBoxConstants.R_BUMPER)
-                      .whenPressed(new FuelCellMotOut(m_FuelCell));
+                      .whileHeld(new FuelCellMotOut(m_FuelCell));
 
     new JoystickButton(m_OperatorController, xBoxConstants.A_BUTTON)
                       .whenPressed(new FuelCellSol(m_FuelCell));
@@ -129,10 +129,10 @@ public class RobotContainer {
                       .whenPressed(new SetColor(m_ControlPanel));
 
     //Climb buttons    
-    new POVButton(m_OperatorController, xBoxConstants.POV_2)
-                       .whenPressed(new RaiseClimb(m_Climb));
+    new POVButton(m_OperatorController, xBoxConstants.POV_UP)
+                       .whenPressed(new RaiseClimb(m_Climb, m_ControlPanel));
                        
-    new POVButton(m_OperatorController, xBoxConstants.POV_6)
+    new POVButton(m_OperatorController, xBoxConstants.POV_DOWN)
                         .whenPressed(new LowerClimb(m_Climb));
 
     
