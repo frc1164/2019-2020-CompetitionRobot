@@ -9,6 +9,7 @@ package frc.robot.subsystems;
 
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import edu.wpi.first.wpilibj.Solenoid;
+import edu.wpi.first.wpilibj.DigitalInput;
 
 import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.can.VictorSPX;
@@ -21,6 +22,8 @@ public class Climb extends SubsystemBase {
   private final VictorSPX winchMot2;
   private final Solenoid climbExtend;
   private final Solenoid climbRetract;
+  private static DigitalInput limitSwitch;
+  public static boolean switchState;
 
   /**
    * Creates a new Climb.
@@ -30,6 +33,7 @@ public class Climb extends SubsystemBase {
     winchMot2 = new VictorSPX(climbConstants.winchMot2);
     climbExtend = new Solenoid(driveConstants.PCM, climbConstants.climbExtend);
     climbRetract = new Solenoid(driveConstants.PCM, climbConstants.climbRetract);
+    limitSwitch = new DigitalInput(climbConstants.limitSwitchPort);
   }
   
   public void lowerClimb() {
@@ -48,6 +52,11 @@ public class Climb extends SubsystemBase {
     winchMot2.setInverted(climbConstants.invertWinchMot2);
     winchMot1.set(ControlMode.PercentOutput, speed);
     winchMot2.set(ControlMode.PercentOutput, speed);
+  }
+
+  public boolean switchState() {
+    switchState = limitSwitch.get();
+    return switchState;
   }
 
   @Override
