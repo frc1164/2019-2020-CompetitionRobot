@@ -6,55 +6,46 @@
 /*----------------------------------------------------------------------------*/
 
 package frc.robot.commands;
+
 import edu.wpi.first.wpilibj2.command.CommandBase;
-import com.revrobotics.ColorMatch;
+import edu.wpi.first.wpilibj.Timer;
+
+import frc.robot.subsystems.Climb;
 import frc.robot.subsystems.ControlPanel;
-import frc.robot.Constants.conPanConstants;
 
-public class SetColor extends CommandBase {
-  public ControlPanel m_controlPanel;
-  public ColorMatch m_colorMatcher;
-  private boolean isMatched;
-
-  public SetColor(ControlPanel m_controlPanel) {
+public class RaiseClimb extends CommandBase {
+  private final Climb m_Climb;
+  private final ControlPanel m_ControlPanel;
+  /**
+   * Creates a new RaiseClimb.
+   */
+  public RaiseClimb(Climb m_Climb, ControlPanel m_ControlPanel) {
+    this.m_Climb = m_Climb;
+    this.m_ControlPanel = m_ControlPanel;
     // Use addRequirements() here to declare subsystem dependencies.
-    this.m_controlPanel = m_controlPanel;
   }
 
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {
-    isMatched = false;
   }
 
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    //Add code that sets the LEDs
-    m_controlPanel.getColor();
-    m_controlPanel.matchColor();
-    m_controlPanel.printColor();
-
-    //if the SmartDashboard output 'colorString' is not equal to the String 'FMScolor,' run the motor
-    if (ControlPanel.colorString.compareTo(conPanConstants.FMScolor) != 0) {
-      m_controlPanel.conPanSpeed(0.2);
-    }
-    //else, end the command and turn off the motor
-    else {
-      // Here, buttonReleased means that the command has done its job should end.
-      isMatched = true;
-    }
+    m_ControlPanel.raiseConPanSol();
+    Timer.delay(1);
+    m_Climb.raiseClimb();
   }
 
   // Called once the command ends or is interrupted.
   @Override
   public void end(boolean interrupted) {
-    m_controlPanel.conPanSpeed(0.0);
   }
 
   // Returns true when the command should end.
   @Override
   public boolean isFinished() {
-      return isMatched;
-    }
+    return true;
+  }
 }

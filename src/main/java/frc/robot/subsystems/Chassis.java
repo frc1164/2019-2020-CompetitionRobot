@@ -19,11 +19,11 @@ import edu.wpi.first.wpilibj.Solenoid;
 import frc.robot.Constants.driveConstants;
 
 public class Chassis extends SubsystemBase {
-  private final VictorSPX leftMotorRear = new VictorSPX(driveConstants.leftMotorRear);
-  private final VictorSPX rightMotorRear = new VictorSPX(driveConstants.rightMotorRear);
-  private final VictorSPX leftMotorFront = new VictorSPX(driveConstants.leftMotorFront);
-  private final VictorSPX rightMotorFront = new VictorSPX(driveConstants.rightMotorFront);
   private final Solenoid LowSol, HighSol;
+  private final VictorSPX leftMotorRear;
+  private final VictorSPX rightMotorRear;
+  private final VictorSPX leftMotorFront;
+  private final VictorSPX rightMotorFront;
   private static boolean m_changeGear = false;
 
   /**
@@ -32,6 +32,10 @@ public class Chassis extends SubsystemBase {
   public Chassis() {
     LowSol = new Solenoid(driveConstants.PCM, driveConstants.LowSol);                      
     HighSol = new Solenoid(driveConstants.PCM, driveConstants.HighSol);
+    leftMotorRear = new VictorSPX(driveConstants.leftMotorRear);
+    rightMotorRear = new VictorSPX(driveConstants.rightMotorRear);
+    leftMotorFront = new VictorSPX(driveConstants.leftMotorFront);
+    rightMotorFront = new VictorSPX(driveConstants.rightMotorFront);
   }
 
   //Used to set to low gear when initialized
