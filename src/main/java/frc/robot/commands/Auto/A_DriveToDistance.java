@@ -14,7 +14,6 @@ import edu.wpi.first.wpilibj.controller.PIDController;
 
 public class A_DriveToDistance extends CommandBase {
   private final Chassis m_Chassis;
-  private final Vision m_Vision;
   private final double m_distanceToStop;
   private final double m_DriveSpeed;
   PIDController UltrsDist = new PIDController(0.017, 0.006, 0.003);
@@ -23,7 +22,6 @@ public class A_DriveToDistance extends CommandBase {
    */
   public A_DriveToDistance(double DriveSpeed, double InchesToStop, Chassis m_Chassis, Vision m_Vision) {
     this.m_Chassis = m_Chassis;
-    this.m_Vision = m_Vision;
     m_DriveSpeed = -DriveSpeed;
     m_distanceToStop = InchesToStop;
     addRequirements(m_Chassis);

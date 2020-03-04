@@ -38,11 +38,11 @@ public class Drive extends CommandBase {
     turn = (Math.abs(turn) <= 0.1) ? 0 : turn; 
     forward = (Math.abs(forward) <= 0.1) ? 0 : forward; 
     
-    double leftMSpeed = ((-scalar*forward) - turn);
-    double rightMSpeed = ((-scalar*forward) + turn);
+    double leftMSpeed = (-Math.abs(scalar)*(forward - turn));
+    double rightMSpeed = (-Math.abs(scalar)*(forward + turn));
 
-    m_Chassis.leftSpeed(leftMSpeed);
-    m_Chassis.rightSpeed(rightMSpeed);
+    m_Chassis.leftSpeed(leftMSpeed + CenterGoal.PIDout);
+    m_Chassis.rightSpeed(rightMSpeed - CenterGoal.PIDout);
   }
 
   // Called once the command ends or is interrupted.

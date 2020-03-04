@@ -14,7 +14,6 @@ import edu.wpi.first.wpilibj.controller.PIDController;
 
 public class A_CenterGoalDriveToDistance extends CommandBase {
   private final Chassis m_Chassis;
-  private final Vision m_Vision;
   private double m_SpeedWhileCentering;
   private double m_inchesToStop;
   private double PIDout;
@@ -24,7 +23,6 @@ public class A_CenterGoalDriveToDistance extends CommandBase {
    */
   public A_CenterGoalDriveToDistance(double forwardSpeed, double inchesToStop, Chassis m_Chassis, Vision m_Vision) {
     this.m_Chassis = m_Chassis;
-    this.m_Vision = m_Vision;
     m_inchesToStop = inchesToStop;
     m_SpeedWhileCentering = -forwardSpeed;
     addRequirements(m_Chassis);
