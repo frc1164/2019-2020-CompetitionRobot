@@ -58,6 +58,13 @@ public class Chassis extends SubsystemBase {
     rightMotorRear.set(ControlMode.PercentOutput, speed);
   }
 
+  public void brake() {
+    leftMotorFront.set(ControlMode.PercentOutput, 0.0);
+    leftMotorRear.set(ControlMode.PercentOutput, 0.0);
+    rightMotorFront.set(ControlMode.PercentOutput, 0.0);
+    rightMotorRear.set(ControlMode.PercentOutput, 0.0);
+  }
+
   public void changeGear() {
     Chassis.m_changeGear = !Chassis.m_changeGear;
     LowSol.set(!Chassis.m_changeGear);
