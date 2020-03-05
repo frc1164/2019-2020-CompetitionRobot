@@ -90,10 +90,6 @@ public class RobotContainer {
 
     //Initialization methods
     m_Chassis.chassisInit();
-    m_ControlPanel.lowerConPanSol();
-    m_FuelCell.lowerFuelCell();
-    Timer.delay(3);
-    m_Climb.lowerClimb();
   }
 
   /**
