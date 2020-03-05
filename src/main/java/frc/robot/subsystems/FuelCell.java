@@ -53,6 +53,7 @@ public class FuelCell extends SubsystemBase {
     lowerHopper.set(!isExtended);
     raiseHopper.set(isExtended);
   }
+  
   public void fuelCellSpeed(double fuelCellSpeed) {
     fuelCellMot.set(ControlMode.PercentOutput, fuelCellSpeed);
   }
