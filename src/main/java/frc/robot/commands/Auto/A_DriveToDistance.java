@@ -30,14 +30,15 @@ public class A_DriveToDistance extends CommandBase {
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {
+    UltrsDist.setSetpoint(m_distanceToStop);
+    UltrsDist.enableContinuousInput(-29.8, 29.8);
+    UltrsDist.setTolerance(.5);
   }
 
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-        UltrsDist.reset();
-        UltrsDist.setSetpoint(m_distanceToStop);
-        UltrsDist.enableContinuousInput(-29.8, 29.8);
+    //UltrsDist.atSetpoint();
     while (Vision.get_Distance() >= m_distanceToStop) {
     m_Chassis.leftSpeed(m_DriveSpeed);
     m_Chassis.rightSpeed(m_DriveSpeed);
