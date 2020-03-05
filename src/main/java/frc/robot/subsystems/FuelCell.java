@@ -48,7 +48,11 @@ public class FuelCell extends SubsystemBase {
     raiseHopper.set(FuelCell.fuelCellFlipSol);
     SmartDashboard.putBoolean("fuelCellSol", FuelCell.fuelCellFlipSol);
   }
-  
+
+  public void fuelCellAutoSol(boolean isExtended) {
+    lowerHopper.set(!isExtended);
+    raiseHopper.set(isExtended);
+  }
   public void fuelCellSpeed(double fuelCellSpeed) {
     fuelCellMot.set(ControlMode.PercentOutput, fuelCellSpeed);
   }
