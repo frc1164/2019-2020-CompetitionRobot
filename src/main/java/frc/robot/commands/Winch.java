@@ -34,9 +34,7 @@ public class Winch extends CommandBase {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    SmartDashboard.putBoolean("Limit Switch", Climb.switchState);
-    SmartDashboard.putNumber("LY Axis", RobotContainer.m_OperatorController.getRawAxis(xBoxConstants.LY_AXIS));
-    if ((Climb.switchState == true) && (RobotContainer.m_OperatorController.getRawAxis(xBoxConstants.LY_AXIS) < 0)) { //Figure out if we should use > or <
+    if ((m_Climb.switchState() == false) && (RobotContainer.m_OperatorController.getRawAxis(xBoxConstants.LY_AXIS) > 0)) {
           m_Climb.winchSpeed(0.0);
     }
     else {
