@@ -69,7 +69,7 @@ public final class Constants {
 
     public static final class fuelCellConstants {
         public static final int fuelCellMot = 0;
-        public static final double fuelCellMotSpeed = 0.3;         
+        public static final double fuelCellMotSpeed = 0.4;         
         public static final int raiseHopper = 4;       
         public static final int lowerHopper = 5;
     }
