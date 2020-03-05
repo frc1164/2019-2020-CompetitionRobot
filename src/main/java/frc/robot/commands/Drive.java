@@ -40,8 +40,8 @@ public class Drive extends CommandBase {
     double leftMSpeed = (forward - turn);
     double rightMSpeed = (forward + turn);
 
-    m_Chassis.leftSpeed(leftMSpeed + CenterGoal.PIDout);
-    m_Chassis.rightSpeed(rightMSpeed - CenterGoal.PIDout);
+    m_Chassis.leftSpeed(leftMSpeed + CenterGoal.PIDout + SeekBall.PIDout);
+    m_Chassis.rightSpeed(rightMSpeed - CenterGoal.PIDout - SeekBall.PIDout);
   }
 
   // Called once the command ends or is interrupted.
