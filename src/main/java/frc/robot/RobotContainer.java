@@ -28,6 +28,8 @@ import frc.robot.subsystems.Chassis;
 import frc.robot.subsystems.ControlPanel;
 import frc.robot.subsystems.Climb;
 import frc.robot.subsystems.Vision;
+import frc.robot.subsystems.Pixy;
+import frc.robot.subsystems.Arduino;
 
 //Chassis commands
 import frc.robot.commands.ChangeGear;
@@ -47,6 +49,12 @@ import frc.robot.commands.RotateConPan;
 import frc.robot.commands.LowerClimb;
 import frc.robot.commands.RaiseClimb;
 import frc.robot.commands.Winch;
+
+//Arduino commands
+import frc.robot.commands.ByteCodes;
+
+//Pixy2 commands
+import frc.robot.commands.SeekBall;
 
 //Auto Commands
 import frc.robot.commands.Auto.A_Score;
@@ -69,10 +77,15 @@ public class RobotContainer {
   private final FuelCell m_FuelCell;
   private final ControlPanel m_ControlPanel;
   private final Climb m_Climb;
+  private final Pixy m_Pixy;
+  private final Arduino m_Arduino;
+
 
   //Default Commands
   private final Drive m_Drive;
   private final Winch m_Winch;
+  private final ByteCodes m_ByteCodes;
+
 
   //Define Controllers
   public static Joystick m_DriverStick;
@@ -92,15 +105,23 @@ public class RobotContainer {
     m_ControlPanel = new ControlPanel();
     m_Climb = new Climb();
     m_Vision = new Vision();
+    m_Arduino = new Arduino();
+    m_Pixy = new Pixy();
+
 
     //Set Autonomous Commands
 
     //Set Default Commands
     m_Drive = new Drive(m_Chassis);
     m_Chassis.setDefaultCommand(m_Drive);
+    
 
     m_Winch = new Winch(m_Climb);
     m_Climb.setDefaultCommand(m_Winch);
+
+    m_ByteCodes = new ByteCodes(m_Arduino, m_Pixy, m_Vision);
+    m_Arduino.setDefaultCommand(m_ByteCodes);
+
     
 
     //Define Controller
@@ -142,6 +163,9 @@ public class RobotContainer {
     new JoystickButton(m_DriverStick, joyStickConstants.BUTTON_3)
                        .whenPressed(new ChangeGear(m_Chassis));
 
+    new JoystickButton(m_DriverStick, joyStickConstants.TRIGGER)
+                       .whileHeld(new SeekBall(m_Chassis, m_Pixy));
+
     //FuelCell buttons
     new JoystickButton(m_OperatorController, xBoxConstants.L_BUMPER)
                       .whileHeld(new FuelCellMotIn(m_FuelCell));
@@ -177,6 +201,6 @@ public class RobotContainer {
    */
   public Command getAutonomousCommand() {
     // An ExampleCommand will run in autonomous
-    return null;
+    return m_chooser.getSelected();
   }
 }
