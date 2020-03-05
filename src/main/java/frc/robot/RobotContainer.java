@@ -12,6 +12,7 @@ import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 import edu.wpi.first.wpilibj2.command.button.POVButton;
 //Controllers
 import edu.wpi.first.wpilibj.Joystick;
+import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.XboxController;
 
 //Constants
@@ -88,10 +89,11 @@ public class RobotContainer {
     configureButtonBindings();
 
     //Initialization methods
-    //m_Chassis.chassisInit();
-    //m_ControlPanel.lowerConPanSol();
-    //m_FuelCell.lowerFuelCell();
-    //m_Climb.lowerClimb();
+    m_Chassis.chassisInit();
+    m_ControlPanel.lowerConPanSol();
+    m_FuelCell.lowerFuelCell();
+    Timer.delay(3);
+    m_Climb.lowerClimb();
   }
 
   /**
@@ -131,11 +133,6 @@ public class RobotContainer {
                        
     new POVButton(m_OperatorController, xBoxConstants.POV_DOWN)
                         .whenPressed(new LowerClimb(m_Climb));
-
-    
-
-
-
   }
 
   /**
