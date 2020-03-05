@@ -15,6 +15,7 @@ import edu.wpi.first.wpilibj.shuffleboard.Shuffleboard;
 
 //Controllers
 import edu.wpi.first.wpilibj.Joystick;
+import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.XboxController;
 
 //Constants
@@ -110,9 +111,6 @@ public class RobotContainer {
 
     //Initialization methods
     m_Chassis.chassisInit();
-    m_ControlPanel.lowerConPanSol();
-    m_FuelCell.lowerFuelCell();
-    m_Climb.lowerClimb();
 
     //define auto commands
     final Command m_simpleAuto = new ChangeGear(m_Chassis);
@@ -170,11 +168,6 @@ public class RobotContainer {
                        
     new POVButton(m_OperatorController, xBoxConstants.POV_DOWN)
                         .whenPressed(new LowerClimb(m_Climb));
-
-    
-
-
-
   }
 
   /**
