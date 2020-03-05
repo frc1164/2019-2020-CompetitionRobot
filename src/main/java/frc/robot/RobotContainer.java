@@ -89,10 +89,10 @@ public class RobotContainer {
     configureButtonBindings();
 
     //Initialization methods
-    m_Chassis.chassisInit();
-    m_ControlPanel.lowerConPanSol();
-    m_FuelCell.lowerFuelCell();
-    m_Climb.lowerClimb();
+    //m_Chassis.chassisInit();
+    //m_ControlPanel.lowerConPanSol();
+    //m_FuelCell.lowerFuelCell();
+    //m_Climb.lowerClimb();
   }
 
   /**
