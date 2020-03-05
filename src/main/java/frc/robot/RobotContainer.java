@@ -10,6 +10,9 @@ package frc.robot;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 import edu.wpi.first.wpilibj2.command.button.POVButton;
+import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
+import edu.wpi.first.wpilibj.shuffleboard.Shuffleboard;
+
 //Controllers
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.XboxController;
@@ -23,6 +26,7 @@ import frc.robot.subsystems.FuelCell;
 import frc.robot.subsystems.Chassis;
 import frc.robot.subsystems.ControlPanel;
 import frc.robot.subsystems.Climb;
+import frc.robot.subsystems.Vision;
 
 //Chassis commands
 import frc.robot.commands.ChangeGear;
@@ -43,6 +47,13 @@ import frc.robot.commands.LowerClimb;
 import frc.robot.commands.RaiseClimb;
 import frc.robot.commands.Winch;
 
+//Auto Commands
+import frc.robot.commands.Auto.A_Score;
+import frc.robot.commands.Auto.A_CenterGoalDriveToDistance;
+import frc.robot.commands.Auto.A_DriveOffLine;
+import frc.robot.commands.Auto.A_DriveToDistance;
+
+
 
 /**
  * This class is where the bulk of the robot should be declared.  Since Command-based is a
@@ -51,15 +62,23 @@ import frc.robot.commands.Winch;
  * (including subsystems, commands, and button mappings) should be declared here.
  */
 public class RobotContainer {
-  // The robot's subsystems and default commands are defined here...
+  //Subsystems
   private final Chassis m_Chassis;
-  private final Drive m_Drive;
+  private final Vision m_Vision;
   private final FuelCell m_FuelCell;
   private final ControlPanel m_ControlPanel;
   private final Climb m_Climb;
+
+  //Default Commands
+  private final Drive m_Drive;
   private final Winch m_Winch;
+
+  //Define Controllers
   public static Joystick m_DriverStick;
   public static XboxController m_OperatorController;
+
+  //Define/Instantiate Chooser
+  SendableChooser<Command> m_chooser = new SendableChooser<>();
 
   /**
    * The container for the robot.  Contains subsystems, OI devices, and commands.
@@ -71,6 +90,7 @@ public class RobotContainer {
     m_FuelCell = new FuelCell();
     m_ControlPanel = new ControlPanel();
     m_Climb = new Climb();
+    m_Vision = new Vision();
 
     //Set Autonomous Commands
 
@@ -81,6 +101,7 @@ public class RobotContainer {
     m_Winch = new Winch(m_Climb);
     m_Climb.setDefaultCommand(m_Winch);
     
+
     //Define Controller
     m_DriverStick = new Joystick(joyStickConstants.STICK_PORT);
     m_OperatorController = new XboxController(xBoxConstants.OPERATOR_PORT);
@@ -92,6 +113,24 @@ public class RobotContainer {
     m_ControlPanel.lowerConPanSol();
     m_FuelCell.lowerFuelCell();
     m_Climb.lowerClimb();
+
+    //define auto commands
+    final Command m_simpleAuto = new ChangeGear(m_Chassis);
+    final Command m_Score = new A_Score(m_Chassis, m_FuelCell, m_Vision);
+    final Command m_CenterGoalDrive = new A_CenterGoalDriveToDistance(.3, 30, m_Chassis, m_Vision);
+    final Command m_DriveOffLine = new A_DriveOffLine(m_Chassis);
+    final Command m_DriveToDistance = new A_DriveToDistance(.3, 40, m_Chassis, m_Vision);
+
+    //Autonomous chooser options
+   
+    m_chooser.setDefaultOption("Score From Start", m_Score);
+    m_chooser.addOption("Drive Off Line", m_DriveOffLine);
+    m_chooser.addOption("Drive/Center to Goal", m_CenterGoalDrive);
+    m_chooser.addOption("Dribev  sdkfj", m_DriveToDistance);
+    m_chooser.addOption("Simple Auto", m_simpleAuto);
+
+    // Put the chooser on the dashboard
+    Shuffleboard.getTab("Autonomous").add(m_chooser);
   }
 
   /**

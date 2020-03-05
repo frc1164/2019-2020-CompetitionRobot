@@ -51,6 +51,7 @@ public class A_CenterGoalDriveToDistance extends CommandBase {
         m_Chassis.rightSpeed(-0.4);
       }
     }
+    m_Chassis.brake();
   }
 
   // Called once the command ends or is interrupted.
