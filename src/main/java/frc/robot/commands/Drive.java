@@ -33,13 +33,12 @@ public class Drive extends CommandBase {
   public void execute() {
     double forward = RobotContainer.m_DriverStick.getRawAxis(joyStickConstants.Y_AXIS);
     double turn = RobotContainer.m_DriverStick.getRawAxis(joyStickConstants.X_AXIS);
-    double scalar = RobotContainer.m_DriverStick.getRawAxis(joyStickConstants.SLIDER_AXIS);
 
     turn = (Math.abs(turn) <= 0.1) ? 0 : turn; 
     forward = (Math.abs(forward) <= 0.1) ? 0 : forward; 
     
-    double leftMSpeed = (-Math.abs(scalar)*(forward - turn));
-    double rightMSpeed = (-Math.abs(scalar)*(forward + turn));
+    double leftMSpeed = (forward - turn);
+    double rightMSpeed = (forward + turn);
 
     m_Chassis.leftSpeed(leftMSpeed + CenterGoal.PIDout + centerBall.PIDout);
     m_Chassis.rightSpeed(rightMSpeed - CenterGoal.PIDout - centerBall.PIDout);
