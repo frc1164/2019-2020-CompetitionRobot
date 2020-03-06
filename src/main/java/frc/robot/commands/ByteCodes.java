@@ -39,8 +39,7 @@ public class ByteCodes extends CommandBase {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-   Block ball = m_Pixy.largestBlock();
-   if(m_Pixy.ballSeen(ball) != ballState){
+   if(m_Pixy.ballSeen() != ballState){
     m_Arduino.sendBall();
   }
    else if(m_Limelight.get_lltarget() != targetState){ //needs values from a limelight method(Nick)
