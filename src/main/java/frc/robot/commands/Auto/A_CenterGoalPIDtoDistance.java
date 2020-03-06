@@ -12,7 +12,7 @@ import frc.robot.subsystems.Vision;
 import frc.robot.subsystems.Chassis;
 import edu.wpi.first.wpilibj.controller.PIDController;
 
-public class A_CenterGoalDriveToDistance extends CommandBase {
+public class A_CenterGoalPIDtoDistance extends CommandBase {
   private final Chassis m_Chassis;
   private double m_SpeedWhileCentering;
   private double m_inchesToStop;
@@ -21,7 +21,7 @@ public class A_CenterGoalDriveToDistance extends CommandBase {
   /**
    * Creates a new A_CenterGoalDrive.
    */
-  public A_CenterGoalDriveToDistance(double forwardSpeed, double inchesToStop, Chassis m_Chassis, Vision m_Vision) {
+  public A_CenterGoalPIDtoDistance(double forwardSpeed, double inchesToStop, Chassis m_Chassis, Vision m_Vision) {
     this.m_Chassis = m_Chassis;
     m_inchesToStop = inchesToStop;
     m_SpeedWhileCentering = -forwardSpeed;
@@ -47,8 +47,8 @@ public class A_CenterGoalDriveToDistance extends CommandBase {
       }
 
       else {
-        m_Chassis.leftSpeed(0.5);
-        m_Chassis.rightSpeed(-0.5);
+        m_Chassis.leftSpeed(0.4);
+        m_Chassis.rightSpeed(-0.4);
       }
     }
     m_Chassis.brake();
