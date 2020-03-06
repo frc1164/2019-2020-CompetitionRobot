@@ -79,8 +79,6 @@ public class Vision extends SubsystemBase {
     SmartDashboard.putNumber("Lime light Dist", get_Distance());
   }
 
-
-  
   @Override
   public void periodic() {
     // This method will be called once per scheduler run

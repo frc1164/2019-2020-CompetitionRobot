@@ -54,8 +54,6 @@ import frc.robot.commands.Auto.A_CenterGoalDriveToDistance;
 import frc.robot.commands.Auto.A_DriveOffLine;
 import frc.robot.commands.Auto.A_DriveToDistance;
 
-
-
 /**
  * This class is where the bulk of the robot should be declared.  Since Command-based is a
  * "declarative" paradigm, very little robot logic should actually be handled in the {@link Robot}
@@ -70,9 +68,11 @@ public class RobotContainer {
   private final ControlPanel m_ControlPanel;
   private final Climb m_Climb;
 
+
   //Default Commands
   private final Drive m_Drive;
   private final Winch m_Winch;
+
 
   //Define Controllers
   public static Joystick m_DriverStick;
@@ -93,15 +93,15 @@ public class RobotContainer {
     m_Climb = new Climb();
     m_Vision = new Vision();
 
+
     //Set Autonomous Commands
 
     //Set Default Commands
     m_Drive = new Drive(m_Chassis);
     m_Chassis.setDefaultCommand(m_Drive);
-
+    
     m_Winch = new Winch(m_Climb);
     m_Climb.setDefaultCommand(m_Winch);
-    
 
     //Define Controller
     m_DriverStick = new Joystick(joyStickConstants.STICK_PORT);
@@ -111,9 +111,6 @@ public class RobotContainer {
 
     //Initialization methods
     m_Chassis.chassisInit();
-    m_ControlPanel.lowerConPanSol();
-    m_FuelCell.lowerFuelCell();
-    m_Climb.lowerClimb();
 
     //define auto commands
     final Command m_simpleAuto = new ChangeGear(m_Chassis);
@@ -123,7 +120,6 @@ public class RobotContainer {
     final Command m_DriveToDistance = new A_DriveToDistance(.3, 40, m_Chassis, m_Vision);
 
     //Autonomous chooser options
-   
     m_chooser.setDefaultOption("Score From Start", m_Score);
     m_chooser.addOption("Drive Off Line", m_DriveOffLine);
     m_chooser.addOption("Drive/Center to Goal", m_CenterGoalDrive);
@@ -171,12 +167,6 @@ public class RobotContainer {
                        
     new POVButton(m_OperatorController, xBoxConstants.POV_DOWN)
                         .whenPressed(new LowerClimb(m_Climb));
-
-    new JoystickButton(m_DriverStick, 12)
-                        .whenPressed(new TestDistancePID(m_Chassis, m_Vision));
-
-
-
   }
 
   /**

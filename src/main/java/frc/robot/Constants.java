@@ -69,7 +69,7 @@ public final class Constants {
 
     public static final class fuelCellConstants {
         public static final int fuelCellMot = 0;
-        public static final double fuelCellMotSpeed = 0.3;         
+        public static final double fuelCellMotSpeed = 0.4;         
         public static final int raiseHopper = 4;       
         public static final int lowerHopper = 5;
     }
@@ -96,6 +96,6 @@ public final class Constants {
         public static final boolean invertWinchMot2 = false;
         public static final int climbExtend = 6; //Solenoids may need to be reversed
         public static final int climbRetract = 7; //Solenoids may need to be reversed
-        public static final int limitSwitchPort = 0;
+        public static final int limitSwitchPort = 2;
     }
 }
