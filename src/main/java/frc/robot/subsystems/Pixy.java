@@ -20,12 +20,16 @@ public class Pixy extends SubsystemBase {
   private static Pixy2 pixy;
   Block largestBlock;
   ArrayList<Block> blocks;
+  Pixy2CCC pixyCCC;
+  final int blockSignature = 1;
+
   /**
    * Creates a new Pixy.
    */
   public Pixy() {
     pixy = Pixy2.createInstance(new SPILink());
     pixy.init();
+    pixyCCC = pixy.getCCC();
   }
 
   @Override
@@ -43,9 +47,7 @@ public class Pixy extends SubsystemBase {
     // Gets the number of "blocks", identified targets, that match signature 1 on the Pixy2,
 		// does not wait for new data if none is available,
 		// and limits the number of returned blocks to 25, for a slight increase in efficiency
-    Pixy2CCC temp = pixy.getCCC();
-    final int blockSignature = 1;
-    int errorCode = temp.getBlocks(false, Pixy2CCC.CCC_SIG1, 25);
+    int errorCode = pixyCCC.getBlocks(false, Pixy2CCC.CCC_SIG1, 25);
     if (errorCode <= 0){
       System.out.println("Recieved error code: " + errorCode); // Reports error code
       return null;

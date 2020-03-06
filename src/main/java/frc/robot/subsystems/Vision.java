@@ -36,7 +36,7 @@ public class Vision extends SubsystemBase {
   }
   
   //Method for LimeLight valid target
-  public boolean get_lltarget() {
+  public static boolean get_lltarget() {
     double LLt = tv.getDouble(0.0);
     
     if (LLt == 1) {

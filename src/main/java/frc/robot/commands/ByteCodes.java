@@ -26,7 +26,7 @@ public class ByteCodes extends CommandBase {
   public ByteCodes(Arduino m_Arduino, Pixy m_Pixy, Vision m_Limelight) {
     this.m_Arduino = m_Arduino;
     this.m_Pixy = m_Pixy;
-    this.m_Limelight = m_Limelight;
+    //this.m_Limelight = m_Limelight;
     addRequirements(m_Arduino);
     // Use addRequirements() here to declare subsystem dependencies.
   }
@@ -42,7 +42,7 @@ public class ByteCodes extends CommandBase {
    if(m_Pixy.ballSeen() != ballState){
     m_Arduino.sendBall();
   }
-   else if(m_Limelight.get_lltarget() != targetState){ //needs values from a limelight method(Nick)
+   else if(Vision.get_lltarget() != targetState){ //needs values from a limelight method(Nick)
     m_Arduino.sendTarget();
   }
     else if(!(Arduino.gameData().equalsIgnoreCase(fmsColor)))  
