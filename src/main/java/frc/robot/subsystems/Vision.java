@@ -25,7 +25,7 @@ public class Vision extends SubsystemBase {
    * Creates a new Vision.
    */
   public Vision() {
-    m_Ultrasonic = new Ultrasonic(7, 6);
+    m_Ultrasonic = new Ultrasonic(6, 7);
     m_Ultrasonic.setAutomaticMode(true);
     //Sets up Lime Light Network Tables
     table = NetworkTableInstance.getDefault().getTable("limelight");
@@ -76,7 +76,7 @@ public class Vision extends SubsystemBase {
     SmartDashboard.putNumber("LimelightX", get_llx());
     SmartDashboard.putNumber("LimelightY", get_lly());
     SmartDashboard.putNumber("LimelightArea", get_llarea());
-    SmartDashboard.putNumber("Lime light Dist", get_Distance());
+    SmartDashboard.putNumber("Lime light Dist", m_Ultrasonic.getRangeInches());
   }
 
 
