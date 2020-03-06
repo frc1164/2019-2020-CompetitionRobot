@@ -49,16 +49,11 @@ public class Pixy extends SubsystemBase {
 		// and limits the number of returned blocks to 25, for a slight increase in efficiency
     int errorCode = pixyCCC.getBlocks(false, Pixy2CCC.CCC_SIG1, 25);
     if (errorCode <= 0){
-      System.out.println("Recieved error code: " + errorCode); // Reports error code
       return null;
-    }
-    else {
-      System.out.println("Recieved: " + errorCode + " Blocks"); //returns number of blocks
     }
     blocks = pixy.getCCC().getBlockCache(); // Gets a list of all blocks found by the Pixy2
     largestBlock = null;
     if (blocks == null) {
-			System.err.println("No Blocks");
 			return null;
 		}
 		for (Block block : blocks) {

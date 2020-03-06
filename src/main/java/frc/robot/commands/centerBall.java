@@ -36,7 +36,7 @@ public class centerBall extends CommandBase {
 
 
   /**
-   * Creates a new SeekBall.
+   * Creates a new centerBall.
    */
   public centerBall(Chassis m_Chassis, Pixy m_Pixy) {
     this.m_Chassis = m_Chassis;
