@@ -18,6 +18,7 @@ public class A_CenterGoalPIDtoDistance extends CommandBase {
   private double m_inchesToStop;
   private double PIDout;
   PIDController CenterLLPID = new PIDController(0.017, 0.006, 0.003);
+  PIDController UltrsDist = new PIDController(0.017, 0.006, 0.003);
   /**
    * Creates a new A_CenterGoalDrive.
    */
@@ -31,19 +32,22 @@ public class A_CenterGoalPIDtoDistance extends CommandBase {
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {
+    UltrsDist.setSetpoint(m_inchesToStop);
+    UltrsDist.enableContinuousInput(0, 96);
+    UltrsDist.setTolerance(.5);
   }
 
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    while (!Vision.get_lltarget() || (Vision.get_Distance() >= m_inchesToStop)){
+    while (!UltrsDist.atSetpoint()){
       if (Vision.get_lltarget()){   
         CenterLLPID.reset();
         CenterLLPID.setSetpoint(0.0);
         CenterLLPID.enableContinuousInput(-29.8, 29.8);
         PIDout = CenterLLPID.calculate(Vision.get_llx());
-        m_Chassis.rightSpeed(m_SpeedWhileCentering - PIDout);
-        m_Chassis.leftSpeed(m_SpeedWhileCentering + PIDout);
+        m_Chassis.rightSpeed(UltrsDist.calculate(Vision.get_Distance()) - PIDout);
+        m_Chassis.leftSpeed(UltrsDist.calculate(Vision.get_Distance()) + PIDout);
       }
 
       else {
