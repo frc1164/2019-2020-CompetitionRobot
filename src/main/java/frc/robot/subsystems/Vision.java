@@ -25,7 +25,7 @@ public class Vision extends SubsystemBase {
    * Creates a new Vision.
    */
   public Vision() {
-    m_Ultrasonic = new Ultrasonic(7, 6);
+    m_Ultrasonic = new Ultrasonic(6, 7);
     m_Ultrasonic.setAutomaticMode(true);
     //Sets up Lime Light Network Tables
     table = NetworkTableInstance.getDefault().getTable("limelight");
