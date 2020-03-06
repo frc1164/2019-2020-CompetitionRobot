@@ -7,11 +7,13 @@
 
 package frc.robot.commands;
 
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 
 import frc.robot.RobotContainer;
 import frc.robot.Constants.xBoxConstants;
 import frc.robot.subsystems.Climb;
+import frc.robot.subsystems.Vision;
 
 public class Winch extends CommandBase {
   private final Climb m_Climb;
@@ -45,6 +47,8 @@ public class Winch extends CommandBase {
 
       m_Climb.winchSpeed(winchMotSpeed);
     }
+
+    SmartDashboard.putNumber("US Test", Vision.get_Distance());
   }
 
   // Called once the command ends or is interrupted.
