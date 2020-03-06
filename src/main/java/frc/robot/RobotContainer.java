@@ -40,6 +40,7 @@ import frc.robot.commands.FuelCellMotOut;
 //ControlPanel commands
 import frc.robot.commands.ConPanSol;
 import frc.robot.commands.SetColor;
+import frc.robot.commands.TestDistancePID;
 import frc.robot.commands.RotateConPan;
 
 //Climb commands
@@ -171,7 +172,8 @@ public class RobotContainer {
     new POVButton(m_OperatorController, xBoxConstants.POV_DOWN)
                         .whenPressed(new LowerClimb(m_Climb));
 
-    
+    new JoystickButton(m_DriverStick, 12)
+                        .whenPressed(new TestDistancePID(m_Chassis, m_Vision));
 
 
 

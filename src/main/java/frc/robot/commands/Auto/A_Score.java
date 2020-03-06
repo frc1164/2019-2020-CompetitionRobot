@@ -28,7 +28,7 @@ public class A_Score extends SequentialCommandGroup {
       new A_CenterGoalDriveToDistance(0.3, 14.5, m_Chassis, m_Vision),
 
       new A_FCEEmot(-0.3, m_FuelCell),
-      new A_Delay(6),
+      new A_Delay(4),
       new A_FCEEmot(0, m_FuelCell),
 
       new A_FCEEsol(false , m_FuelCell),

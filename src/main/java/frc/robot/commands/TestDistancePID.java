@@ -48,7 +48,7 @@ public class TestDistancePID extends CommandBase {
   D = kD.getDouble(0.0);
   testPID.setPID(P, I, D);
   testPID.setSetpoint(Dist.getDouble(30)); // 30 inches
-  testPID.enableContinuousInput(-29.8, 29.8);
+  testPID.enableContinuousInput(0, 96);
   }
 
   // Called every time the scheduler runs while the command is scheduled.
