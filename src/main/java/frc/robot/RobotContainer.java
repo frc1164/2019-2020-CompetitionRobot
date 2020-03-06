@@ -15,7 +15,6 @@ import edu.wpi.first.wpilibj.shuffleboard.Shuffleboard;
 
 //Controllers
 import edu.wpi.first.wpilibj.Joystick;
-import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.XboxController;
 
 //Constants
@@ -28,8 +27,6 @@ import frc.robot.subsystems.Chassis;
 import frc.robot.subsystems.ControlPanel;
 import frc.robot.subsystems.Climb;
 import frc.robot.subsystems.Vision;
-import frc.robot.subsystems.Pixy;
-import frc.robot.subsystems.Arduino;
 
 //Chassis commands
 import frc.robot.commands.ChangeGear;
@@ -50,19 +47,11 @@ import frc.robot.commands.LowerClimb;
 import frc.robot.commands.RaiseClimb;
 import frc.robot.commands.Winch;
 
-//Arduino commands
-import frc.robot.commands.ByteCodes;
-
-//Pixy2 commands
-import frc.robot.commands.SeekBall;
-
 //Auto Commands
 import frc.robot.commands.Auto.A_Score;
 import frc.robot.commands.Auto.A_CenterGoalDriveToDistance;
 import frc.robot.commands.Auto.A_DriveOffLine;
 import frc.robot.commands.Auto.A_DriveToDistance;
-
-
 
 /**
  * This class is where the bulk of the robot should be declared.  Since Command-based is a
@@ -77,14 +66,11 @@ public class RobotContainer {
   private final FuelCell m_FuelCell;
   private final ControlPanel m_ControlPanel;
   private final Climb m_Climb;
-  private final Pixy m_Pixy;
-  private final Arduino m_Arduino;
 
 
   //Default Commands
   private final Drive m_Drive;
   private final Winch m_Winch;
-  private final ByteCodes m_ByteCodes;
 
 
   //Define Controllers
@@ -105,8 +91,6 @@ public class RobotContainer {
     m_ControlPanel = new ControlPanel();
     m_Climb = new Climb();
     m_Vision = new Vision();
-    m_Arduino = new Arduino();
-    m_Pixy = new Pixy();
 
 
     //Set Autonomous Commands
@@ -115,14 +99,8 @@ public class RobotContainer {
     m_Drive = new Drive(m_Chassis);
     m_Chassis.setDefaultCommand(m_Drive);
     
-
     m_Winch = new Winch(m_Climb);
     m_Climb.setDefaultCommand(m_Winch);
-
-    m_ByteCodes = new ByteCodes(m_Arduino, m_Pixy, m_Vision);
-    m_Arduino.setDefaultCommand(m_ByteCodes);
-
-    
 
     //Define Controller
     m_DriverStick = new Joystick(joyStickConstants.STICK_PORT);
@@ -141,7 +119,6 @@ public class RobotContainer {
     final Command m_DriveToDistance = new A_DriveToDistance(.3, 40, m_Chassis, m_Vision);
 
     //Autonomous chooser options
-   
     m_chooser.setDefaultOption("Score From Start", m_Score);
     m_chooser.addOption("Drive Off Line", m_DriveOffLine);
     m_chooser.addOption("Drive/Center to Goal", m_CenterGoalDrive);
@@ -162,9 +139,6 @@ public class RobotContainer {
     //Chassis buttons
     new JoystickButton(m_DriverStick, joyStickConstants.BUTTON_3)
                        .whenPressed(new ChangeGear(m_Chassis));
-
-    new JoystickButton(m_DriverStick, joyStickConstants.TRIGGER)
-                       .whileHeld(new SeekBall(m_Chassis, m_Pixy));
 
     //FuelCell buttons
     new JoystickButton(m_OperatorController, xBoxConstants.L_BUMPER)
