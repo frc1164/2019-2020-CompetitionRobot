@@ -54,7 +54,7 @@ import frc.robot.commands.Winch;
 import frc.robot.commands.ByteCodes;
 
 //Pixy2 commands
-import frc.robot.commands.SeekBall;
+import frc.robot.commands.centerBall;
 
 //Auto Commands
 import frc.robot.commands.Auto.A_Score;
@@ -164,7 +164,7 @@ public class RobotContainer {
                        .whenPressed(new ChangeGear(m_Chassis));
 
     new JoystickButton(m_DriverStick, joyStickConstants.TRIGGER)
-                       .whileHeld(new SeekBall(m_Chassis, m_Pixy));
+                       .whileHeld(new centerBall(m_Chassis, m_Pixy));
 
     //FuelCell buttons
     new JoystickButton(m_OperatorController, xBoxConstants.L_BUMPER)

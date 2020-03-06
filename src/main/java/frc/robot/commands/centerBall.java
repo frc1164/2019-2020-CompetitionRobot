@@ -18,7 +18,7 @@ import frc.robot.RobotContainer;
 import io.github.pseudoresonance.pixy2api.Pixy2CCC.Block;
 
 
-public class SeekBall extends CommandBase {
+public class centerBall extends CommandBase {
   private final Chassis m_Chassis;
   private final Pixy m_Pixy;
   public static double PIDout;
@@ -38,7 +38,7 @@ public class SeekBall extends CommandBase {
   /**
    * Creates a new SeekBall.
    */
-  public SeekBall(Chassis m_Chassis, Pixy m_Pixy) {
+  public centerBall(Chassis m_Chassis, Pixy m_Pixy) {
     this.m_Chassis = m_Chassis;
     this.m_Pixy = m_Pixy;
   }
@@ -59,9 +59,8 @@ public class SeekBall extends CommandBase {
 
   public void execute() {
     buttonReleased = false;
-    Block ball = m_Pixy.largestBlock();
-    if (m_Pixy.ballSeen(ball)) {
-    PIDout = testPID.calculate(m_Pixy.getXAxis(ball));
+    if (m_Pixy.ballSeen()) {
+    PIDout = testPID.calculate(m_Pixy.getXAxis());
     SmartDashboard.putNumber("Output",PIDout);
 
     }

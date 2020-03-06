@@ -18,6 +18,8 @@ import io.github.pseudoresonance.pixy2api.Pixy2CCC.Block;
 public class Pixy extends SubsystemBase {
 
   private static Pixy2 pixy;
+  Block largestBlock;
+  ArrayList<Block> blocks;
   /**
    * Creates a new Pixy.
    */
@@ -37,7 +39,7 @@ public class Pixy extends SubsystemBase {
 		pixy.setLED(200, 30, 255); // Sets the RGB LED to purple
   }
 
-  public Block largestBlock() {
+  public Block findBlock() {
     // Gets the number of "blocks", identified targets, that match signature 1 on the Pixy2,
 		// does not wait for new data if none is available,
 		// and limits the number of returned blocks to 25, for a slight increase in efficiency
@@ -51,8 +53,8 @@ public class Pixy extends SubsystemBase {
     else {
       System.out.println("Recieved: " + errorCode + " Blocks"); //returns number of blocks
     }
-    ArrayList<Block> blocks = pixy.getCCC().getBlocks(); // Gets a list of all blocks found by the Pixy2
-    Block largestBlock = null;
+    blocks = pixy.getCCC().getBlockCache(); // Gets a list of all blocks found by the Pixy2
+    largestBlock = null;
     if (blocks == null) {
 			System.err.println("No Blocks");
 			return null;
@@ -69,8 +71,8 @@ public class Pixy extends SubsystemBase {
     return largestBlock;
   }
 
-  public boolean ballSeen(Block largestBlock){
-    if (largestBlock != null){
+  public boolean ballSeen(){
+    if (findBlock() != null){
       return true;
     }
     else{
@@ -78,13 +80,17 @@ public class Pixy extends SubsystemBase {
     }
   }
 
-  public int getXAxis(Block largestBlock){
-    Block b = largestBlock;
-    if(b != null){
-    return b.getX();
+  public int getXAxis(){
+    Block b = findBlock();
+    if(ballSeen()){
+      if(b != null){
+      return b.getX();
+      }
+      else{
+        return Integer.MIN_VALUE;
+      }
     }
-    else{
-      return Integer.MIN_VALUE;
+     else{ return Integer.MIN_VALUE;
     }
   }
 }
