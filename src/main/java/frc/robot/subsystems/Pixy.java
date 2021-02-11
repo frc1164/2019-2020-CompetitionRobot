@@ -79,15 +79,11 @@ public class Pixy extends SubsystemBase {
 
   public int getXAxis(){
     Block b = findBlock();
-    if(ballSeen()){
-      if(b != null){
+    if (b != null){
       return b.getX();
-      }
-      else{
-        return Integer.MIN_VALUE;
-      }
     }
-     else{ return Integer.MIN_VALUE;
+    else {
+      return Integer.MIN_VALUE;
     }
   }
 }
