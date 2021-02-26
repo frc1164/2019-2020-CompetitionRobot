@@ -14,9 +14,12 @@ import com.ctre.phoenix.motorcontrol.can.VictorSPX;
 //WPILIB libraries
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import edu.wpi.first.wpilibj.Solenoid;
+import edu.wpi.first.wpilibj.Encoder;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 //Local imports
 import frc.robot.Constants.driveConstants;
+
 
 public class Chassis extends SubsystemBase {
   private final Solenoid LowSol, HighSol;
@@ -24,6 +27,7 @@ public class Chassis extends SubsystemBase {
   private final VictorSPX rightMotorRear;
   private final VictorSPX leftMotorFront;
   private final VictorSPX rightMotorFront;
+  private final Encoder leftEncoder, rightEncoder;
   private static boolean m_changeGear = false;
 
   /**
@@ -36,6 +40,8 @@ public class Chassis extends SubsystemBase {
     rightMotorRear = new VictorSPX(driveConstants.rightMotorRear);
     leftMotorFront = new VictorSPX(driveConstants.leftMotorFront);
     rightMotorFront = new VictorSPX(driveConstants.rightMotorFront);
+    leftEncoder = new Encoder(driveConstants.leftEncoderChanA, driveConstants.leftEncoderChanB);
+    rightEncoder = new Encoder(driveConstants.rightEncoderChanA, driveConstants.rightEncoderChanB);
   }
 
   //Used to set to low gear when initialized
@@ -49,6 +55,7 @@ public class Chassis extends SubsystemBase {
     leftMotorFront.setInverted(driveConstants.invertLeftMotorFront);
     leftMotorFront.set(ControlMode.PercentOutput, speed);
     leftMotorRear.set(ControlMode.PercentOutput, speed);
+    SmartDashboard.putNumber("Left Encoder", leftEncoder.get());
   }
 
   public void rightSpeed(double speed) {
@@ -56,6 +63,7 @@ public class Chassis extends SubsystemBase {
     rightMotorFront.setInverted(driveConstants.invertRightMotorFront);
     rightMotorFront.set(ControlMode.PercentOutput, speed);
     rightMotorRear.set(ControlMode.PercentOutput, speed);
+    SmartDashboard.putNumber("Right Encoder", rightEncoder.get());
   }
 
   public void brake() {

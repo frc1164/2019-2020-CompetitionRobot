@@ -34,8 +34,8 @@ public final class Constants {
 
         public static final int leftEncoderChanA = 0;
         public static final int leftEncoderChanB = 1;
-        public static final int rightEncoderChanA = 2;
-        public static final int rightEncoderChanB = 3;
+        public static final int rightEncoderChanA = 3;
+        public static final int rightEncoderChanB = 4;
     }
 
     public static final class joyStickConstants {
